@@ -16,8 +16,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/nrg/Navbar';
-import Footer from '@/components/nrg/Footer';
+import Navbar from '@/components/nrg/Navbar.tsx';
+import Footer from '@/components/nrg/Footer.tsx';
 
 const positions = [
   {

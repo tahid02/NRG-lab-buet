@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from '@/components/nrg/Navbar';
-import Footer from '@/components/nrg/Footer';
-import HeroSection from '@/components/nrg/HeroSection';
-import MissionSection from '@/components/nrg/MissionSection';
-import ResearchZigZag from '@/components/nrg/ResearchZigZag';
-import NewsSection from '@/components/nrg/NewsSection';
-import ImpactSection from '@/components/nrg/ImpactSection';
+import Navbar from '@/components/nrg/Navbar.tsx';
+import Footer from '@/components/nrg/Footer.tsx';
+import HeroSection from '@/components/nrg/HeroSection.tsx';
+import MissionSection from '@/components/nrg/MissionSection.tsx';
+import ResearchZigZag from '@/components/nrg/ResearchZigZag.tsx';
+import NewsSection from '@/components/nrg/NewsSection.tsx';
+import ImpactSection from '@/components/nrg/ImpactSection.tsx';
 
 export default function Home() {
   const { pathname } = useLocation();

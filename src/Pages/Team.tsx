@@ -9,8 +9,8 @@ import {
   BookOpen,
   ArrowRight,
 } from 'lucide-react';
-import Navbar from '@/components/nrg/Navbar';
-import Footer from '@/components/nrg/Footer';
+import Navbar from '@/components/nrg/Navbar.tsx';
+import Footer from '@/components/nrg/Footer.tsx';
 
 const pi = {
   name: 'Dr. Muhammad Rahman',

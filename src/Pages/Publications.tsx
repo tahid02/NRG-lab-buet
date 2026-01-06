@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/nrg/Navbar';
-import Footer from '@/components/nrg/Footer';
+import Navbar from '@/components/nrg/Navbar.tsx';
+import Footer from '@/components/nrg/Footer.tsx';
 
 const publications = [
   {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from '@/components/nrg/Navbar';
-import Footer from '@/components/nrg/Footer';
+import Navbar from '@/components/nrg/Navbar.tsx';
+import Footer from '@/components/nrg/Footer.tsx';
 import Home from '@/pages/Home';
 import Research from '@/pages/Research';
 import Team from '@/pages/Team';
