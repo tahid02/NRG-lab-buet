@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Float } from '@react-three/drei';
 import * as THREE from 'three';
@@ -196,8 +196,26 @@ const Bond = ({ start, end, type }) => {
 };
 
 export function BuckyballScene() {
+  const [scale, setScale] = useState(0.8);
+
+  useEffect(() => {
+    const updateScale = () => {
+      const w = window.innerWidth;
+      if (w < 640) {
+        setScale(1.1);
+      } else if (w < 1024) {
+        setScale(1.0);
+      } else {
+        setScale(0.9);
+      }
+    };
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '100%', minHeight: '400px' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
@@ -205,7 +223,7 @@ export function BuckyballScene() {
         <pointLight position={[0, -10, 5]} intensity={0.5} color="#8080ff" />
 
         <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
-          <group>
+          <group scale={scale}>
             {C60_BONDS.map((bond, i) => (
               <Bond
                 key={`bond-${i}`}
