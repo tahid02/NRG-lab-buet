@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import NanostructureCanvas from './NanostructureCanvas';
+import { BuckyballScene } from './BuckyballScene';
 
 export default function HeroSection() {
   return (
@@ -90,7 +90,7 @@ export default function HeroSection() {
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#00897b]/10 via-transparent to-transparent rounded-full blur-3xl" />
 
-            <NanostructureCanvas />
+            <BuckyballScene />
           </motion.div>
         </div>
       </div>
