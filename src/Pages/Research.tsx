@@ -11,8 +11,6 @@ import {
   FlaskConical,
   Microscope,
 } from 'lucide-react';
-import Navbar from '@/components/nrg/Navbar.tsx';
-import Footer from '@/components/nrg/Footer.tsx';
 
 const researchAreas = [
   {
@@ -103,9 +101,7 @@ export default function Research() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-
+    <div>
       <main>
         {/* Hero */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
@@ -295,8 +291,6 @@ export default function Research() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

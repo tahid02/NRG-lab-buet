@@ -16,8 +16,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/nrg/Navbar.tsx';
-import Footer from '@/components/nrg/Footer.tsx';
 
 const positions = [
   {
@@ -105,9 +103,7 @@ export default function Join() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-
+    <div>
       <main>
         {/* Hero */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
@@ -396,8 +392,6 @@ export default function Join() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

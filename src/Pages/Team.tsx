@@ -9,8 +9,6 @@ import {
   BookOpen,
   ArrowRight,
 } from 'lucide-react';
-import Navbar from '@/components/nrg/Navbar.tsx';
-import Footer from '@/components/nrg/Footer.tsx';
 
 const pi = {
   name: 'Dr. Muhammad Rahman',
@@ -116,9 +114,7 @@ export default function Team() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-
+    <div>
       <main>
         {/* Hero */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
@@ -347,8 +343,6 @@ export default function Team() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

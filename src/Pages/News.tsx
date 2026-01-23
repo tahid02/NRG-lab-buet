@@ -9,8 +9,6 @@ import {
   Users,
   Microscope,
 } from 'lucide-react';
-import Navbar from '@/components/nrg/Navbar.tsx';
-import Footer from '@/components/nrg/Footer.tsx';
 
 const newsItems = [
   {
@@ -100,9 +98,7 @@ export default function News() {
   const regularNews = newsItems.filter((n) => !n.featured);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-
+    <div>
       <main>
         {/* Hero */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
@@ -313,8 +309,6 @@ export default function News() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

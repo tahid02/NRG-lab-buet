@@ -11,8 +11,6 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/nrg/Navbar.tsx';
-import Footer from '@/components/nrg/Footer.tsx';
 
 const publications = [
   {
@@ -142,9 +140,7 @@ export default function Publications() {
   });
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-
+    <div>
       <main>
         {/* Hero */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
@@ -346,8 +342,6 @@ export default function Publications() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }
