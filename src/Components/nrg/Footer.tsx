@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from 'lucide-react';
 export default function Footer() {
   const quickLinks = [
     { name: 'Research', path: 'Research' },
-    { name: 'Team', path: 'Team' },
+    { name: 'About Us', path: 'About Us' },
     { name: 'Publications', path: 'Publications' },
     { name: 'News', path: 'News' },
     { name: 'Join Us', path: 'Join' },

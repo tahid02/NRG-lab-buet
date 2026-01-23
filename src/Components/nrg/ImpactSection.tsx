@@ -113,7 +113,7 @@ export default function ImpactSection() {
         >
           {[
             { number: '150+', label: 'Publications' },
-            { number: '25', label: 'Team Members' },
+            { number: '25', label: 'Lab Members' },
             { number: '12', label: 'Active Projects' },
             { number: '8', label: 'Industry Partners' },
           ].map((stat, index) => (

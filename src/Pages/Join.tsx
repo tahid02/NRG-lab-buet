@@ -30,7 +30,7 @@ const positions = [
       'Good communication skills',
     ],
     description:
-      'Join our team working on next-generation solid-state batteries. You will develop novel electrolyte materials and characterize their electrochemical properties.',
+      'Join our lab working on next-generation solid-state batteries. You will develop novel electrolyte materials and characterize their electrochemical properties.',
   },
   {
     title: 'Postdoctoral Researcher - 2D Materials',
@@ -115,7 +115,7 @@ export default function Join() {
               className="max-w-3xl"
             >
               <p className="text-sm uppercase tracking-[0.25em] text-[#00897b] font-semibold mb-4">
-                Join Our Team
+                Join Our Lab
               </p>
               <h1
                 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#630e1d] leading-tight"
@@ -285,7 +285,7 @@ export default function Join() {
                   Get in <span className="text-[#630e1d]">Touch</span>
                 </h2>
                 <p className="mt-4 text-gray-600">
-                  Interested in joining our team or have questions? Send us a
+                  Interested in joining our lab or have questions? Send us a
                   message and we'll get back to you soon.
                 </p>
 

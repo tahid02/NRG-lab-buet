@@ -277,11 +277,11 @@ export default function Research() {
                   to={createPageUrl('Join')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all"
                 >
-                  Join Our Team
+                  Join Our Lab
                   <ArrowRight size={20} />
                 </Link>
                 <Link
-                  to={createPageUrl('Team')}
+                  to={createPageUrl('About Us')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#630e1d] transition-all"
                 >
                   Contact Us

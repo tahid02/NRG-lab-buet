@@ -7,7 +7,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 const newsItems = [
   {
     date: 'December 15, 2024',
-    headline: 'NRG Team Publishes Breakthrough in Nature Nanotechnology',
+    headline: 'NRG Lab Publishes Breakthrough in Nature Nanotechnology',
     summary:
       'Our latest research on graphene-based supercapacitors achieves record energy density.',
   },

@@ -51,7 +51,7 @@ export default function MissionSection() {
             transition={{ delay: 0.4 }}
           >
             <Link
-              to={createPageUrl('Team')}
+              to={createPageUrl('About Us')}
               className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#630e1d] text-[#630e1d] font-semibold rounded-full hover:bg-[#630e1d] hover:text-white transition-all group"
             >
               About The Lab

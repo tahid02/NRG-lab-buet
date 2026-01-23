@@ -9,7 +9,7 @@ export function createPageUrl(pageName: string): string {
   const map: Record<string, string> = {
     'Home': '/',
     'Research': '/research',
-    'Team': '/team',
+    'About Us': '/about-us',
     'Publications': '/publications',
     'News': '/news',
     'Join': '/join',

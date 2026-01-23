@@ -106,7 +106,7 @@ const alumni = [
   },
 ];
 
-export default function Team() {
+export default function AboutUs() {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -126,7 +126,7 @@ export default function Team() {
               className="max-w-3xl"
             >
               <p className="text-sm uppercase tracking-[0.25em] text-[#00897b] font-semibold mb-4">
-                Our Team
+                About Us
               </p>
               <h1
                 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#630e1d] leading-tight"
@@ -135,7 +135,7 @@ export default function Team() {
                 Meet the Minds Behind the Research
               </h1>
               <p className="mt-6 text-xl text-gray-600 leading-relaxed">
-                A diverse team of researchers, students, and staff dedicated to
+                A diverse group of researchers, students, and staff dedicated to
                 advancing nanomaterials science at BUET.
               </p>
             </motion.div>
@@ -223,7 +223,7 @@ export default function Team() {
           </div>
         </section>
 
-        {/* Team Members */}
+        {/* Lab Members */}
         <section className="py-20 bg-[#fff5f5]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div
@@ -236,7 +236,7 @@ export default function Team() {
                 className="text-3xl sm:text-4xl font-bold text-gray-900"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Team <span className="text-[#630e1d]">Members</span>
+                Lab <span className="text-[#630e1d]">Members</span>
               </h2>
             </motion.div>
 
@@ -325,7 +325,7 @@ export default function Team() {
                 className="text-3xl sm:text-4xl font-bold text-white"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Want to Join Our Team?
+                Want to Join Our Lab?
               </h2>
               <p className="mt-4 text-white/80 text-lg">
                 We're always looking for motivated researchers at all levels.

@@ -4,7 +4,7 @@ import Navbar from '@/components/nrg/Navbar.tsx';
 import Footer from '@/components/nrg/Footer.tsx';
 import Home from '@/pages/Home';
 import Research from '@/pages/Research';
-import Team from '@/pages/Team';
+import AboutUs from '@/pages/AboutUs';
 import Publications from '@/pages/Publications';
 import News from '@/pages/News';
 import Join from '@/pages/Join';
@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/research" element={<Research />} />
-            <Route path="/team" element={<Team />} />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/publications" element={<Publications />} />
             <Route path="/news" element={<News />} />
             <Route path="/join" element={<Join />} />

@@ -15,7 +15,7 @@ const newsItems = [
     date: 'December 15, 2024',
     category: 'Publication',
     icon: Newspaper,
-    title: 'NRG Team Publishes Breakthrough in Nature Nanotechnology',
+    title: 'NRG Lab Publishes Breakthrough in Nature Nanotechnology',
     summary:
       'Our latest research on graphene-based supercapacitors achieves record energy density, opening new pathways for next-generation energy storage devices.',
     image:
