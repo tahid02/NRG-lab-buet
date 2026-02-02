@@ -9,7 +9,7 @@ export default function Footer() {
     { name: 'About Us', path: 'About Us' },
     { name: 'Publications', path: 'Publications' },
     { name: 'News', path: 'News' },
-    // { name: 'Join Us', path: 'Join' },
+    { name: 'Facilities', path: 'Facilities' },
   ];
 
   return (

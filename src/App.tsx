@@ -7,6 +7,7 @@ import Research from '@/pages/Research';
 import AboutUs from '@/pages/AboutUs';
 import Publications from '@/pages/Publications';
 import News from '@/pages/News';
+import Facilities from '@/pages/Facilities';
 import { Toaster } from '@/components/ui/toaster';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/publications" element={<Publications />} />
             <Route path="/news" element={<News />} />
+            <Route path="/facilities" element={<Facilities />} />
           </Routes>
         </main>
         <Footer />

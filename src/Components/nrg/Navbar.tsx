@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: 'About Us', path: 'About Us' },
     { name: 'Publications', path: 'Publications' },
     { name: 'News', path: 'News' },
+    { name: 'Facilities', path: 'Facilities' },
   ];
 
   return (
