@@ -213,8 +213,14 @@ export default function AboutUs() {
     <div>
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-20 bg-gradient-to-br from-white via-white to-[#fff5f5]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section
+          className="relative pt-48 pb-32 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80)',
+          }}
+        >
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -225,15 +231,11 @@ export default function AboutUs() {
                 About Us
               </p>
               <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#630e1d] leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 Meet the Minds Behind the Research
               </h1>
-              <p className="mt-6 text-xl text-gray-600 leading-relaxed">
-                A diverse group of researchers, students, and staff dedicated to
-                advancing nanomaterials science at BUET.
-              </p>
             </motion.div>
           </div>
         </section>

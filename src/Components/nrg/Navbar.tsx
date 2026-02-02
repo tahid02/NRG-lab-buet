@@ -6,16 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -31,13 +22,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-5'
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg py-3 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -46,20 +31,12 @@ export default function Navbar() {
             className="flex items-center gap-2 group"
           >
             <span
-              className={`text-2xl font-bold tracking-tight transition-colors ${
-                scrolled ? 'text-[#630e1d]' : 'text-[#630e1d]'
-              }`}
+              className="text-2xl font-bold tracking-tight text-[#630e1d] transition-colors"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               NRG
             </span>
-            <span
-              className={`text-sm font-medium ${
-                scrolled ? 'text-gray-600' : 'text-gray-700'
-              }`}
-            >
-              | BUET
-            </span>
+            <span className="text-sm font-medium text-gray-600">| BUET</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -68,9 +45,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={createPageUrl(link.path)}
-                className={`text-sm font-medium transition-all hover:text-[#00897b] relative group ${
-                  scrolled ? 'text-gray-700' : 'text-gray-800'
-                }`}
+                className="text-sm font-medium text-gray-700 transition-all hover:text-[#00897b] relative group"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00897b] transition-all group-hover:w-full" />
