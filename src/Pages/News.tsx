@@ -273,6 +273,41 @@ export default function News() {
             </div>
           </div>
         </section>
+
+        {/* Newsletter */}
+        <section className="py-20 bg-[#630e1d]">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-white"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                Stay Updated
+              </h2>
+              <p className="mt-4 text-white/80 text-lg">
+                Subscribe to our newsletter for the latest research updates and
+                news.
+              </p>
+              <form className="mt-8 flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40"
+                />
+                <button
+                  type="submit"
+                  className="px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </section>
       </main>
     </div>
   );

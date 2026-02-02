@@ -4,7 +4,6 @@ import HeroSection from '@/components/nrg/HeroSection.tsx';
 import MissionSection from '@/components/nrg/MissionSection.tsx';
 import ResearchZigZag from '@/components/nrg/ResearchZigZag.tsx';
 import NewsSection from '@/components/nrg/NewsSection.tsx';
-import ImpactSection from '@/components/nrg/ImpactSection.tsx';
 
 export default function Home() {
   const { pathname } = useLocation();
@@ -19,7 +18,6 @@ export default function Home() {
       <MissionSection />
       <ResearchZigZag />
       <NewsSection />
-      <ImpactSection />
     </div>
   );
 }
