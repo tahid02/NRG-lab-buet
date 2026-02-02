@@ -312,36 +312,6 @@ export default function AboutUs() {
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="py-20 bg-[#630e1d]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2
-                className="text-3xl sm:text-4xl font-bold text-white"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                Want to Join Our Lab?
-              </h2>
-              <p className="mt-4 text-white/80 text-lg">
-                We're always looking for motivated researchers at all levels.
-              </p>
-              <div className="mt-8">
-                <Link
-                  to={createPageUrl('Join')}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all"
-                >
-                  View Open Positions
-                  <ArrowRight size={20} />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
       </main>
     </div>
   );

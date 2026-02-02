@@ -253,43 +253,6 @@ export default function Research() {
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="py-20 bg-[#630e1d]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2
-                className="text-3xl sm:text-4xl font-bold text-white"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                Interested in Collaboration?
-              </h2>
-              <p className="mt-4 text-white/80 text-lg">
-                We're always looking for academic and industry partners to push
-                the frontiers of materials science.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to={createPageUrl('Join')}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all"
-                >
-                  Join Our Lab
-                  <ArrowRight size={20} />
-                </Link>
-                <Link
-                  to={createPageUrl('About Us')}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#630e1d] transition-all"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
       </main>
     </div>
   );

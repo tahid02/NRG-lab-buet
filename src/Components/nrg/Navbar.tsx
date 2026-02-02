@@ -75,12 +75,6 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00897b] transition-all group-hover:w-full" />
               </Link>
             ))}
-            <Link
-              to={createPageUrl('Join')}
-              className="px-6 py-2.5 bg-[#00897b] text-white text-sm font-semibold rounded-full hover:bg-[#00796b] transition-all hover:shadow-lg hover:shadow-[#00897b]/25 transform hover:-translate-y-0.5"
-            >
-              JOIN THE GROUP
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -118,19 +112,6 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="pt-4"
-              >
-                <Link
-                  to={createPageUrl('Join')}
-                  className="block w-full py-3 bg-[#00897b] text-white text-center font-semibold rounded-full hover:bg-[#00796b] transition-all"
-                >
-                  JOIN THE GROUP
-                </Link>
-              </motion.div>
             </div>
           </motion.div>
         )}

@@ -71,7 +71,6 @@ Pages (React Router):
 - Team: [Team.tsx](/src/pages/Team.tsx)
 - Publications: [Publications.tsx](/src/pages/Publications.tsx)
 - News: [News.tsx](/src/pages/News.tsx)
-- Join: [Join.tsx](/src/pages/Join.tsx)
 
 Shared components:
 
@@ -116,10 +115,6 @@ Shared components:
 ### News Page
 
 - Modify newsItems array in [News.tsx](/src/pages/News.tsx) for date, category, title, summary, and image.
-
-### Join Page
-
-- Update positions array and form content in [Join.tsx](/src/pages/Join.tsx).
 
 ## 3D Hero (Buckyball)
 

@@ -1,19 +1,17 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function createPageUrl(pageName: string): string {
   const map: Record<string, string> = {
-    'Home': '/',
-    'Research': '/research',
+    Home: '/',
+    Research: '/research',
     'About Us': '/about-us',
-    'Publications': '/publications',
-    'News': '/news',
-    'Join': '/join',
-    'Join Us': '/join'
+    Publications: '/publications',
+    News: '/news',
   };
 
   return map[pageName] || `/${pageName.toLowerCase()}`;
