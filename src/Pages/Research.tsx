@@ -1,69 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  Atom,
-  Battery,
-  Layers,
-  Zap,
-  FlaskConical,
-  Microscope,
-} from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 const researchAreas = [
   {
-    icon: Battery,
     title: 'Energy Storage',
     description:
       'Developing next-generation lithium-ion batteries, solid-state electrolytes, and supercapacitors using nanostructured materials for higher energy density and faster charging.',
-    publications: 42,
     image:
       'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80',
   },
   {
-    icon: Layers,
     title: 'Nanocomposites',
     description:
       'Engineering polymer-nanoparticle composites with enhanced mechanical, thermal, and electrical properties for aerospace and automotive applications.',
-    publications: 38,
     image:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
   },
   {
-    icon: FlaskConical,
     title: 'Catalysis',
     description:
       'Designing atomic-scale catalytic sites on 2D materials for sustainable chemical transformations, including CO2 reduction and hydrogen evolution.',
-    publications: 35,
     image:
       'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
   },
   {
-    icon: Zap,
     title: 'Solar Energy',
     description:
       'Improving perovskite and quantum dot solar cells through interface engineering and novel charge transport layers.',
-    publications: 28,
     image:
       'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80',
   },
   {
-    icon: Microscope,
     title: 'Characterization',
     description:
       'Advanced microscopy and spectroscopy techniques for understanding structure-property relationships at the nanoscale.',
-    publications: 25,
     image:
       'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&q=80',
   },
   {
-    icon: Atom,
     title: '2D Materials',
     description:
       'Synthesis and application of graphene, MXenes, and transition metal dichalcogenides for electronics and sensing.',
-    publications: 32,
     image:
       'https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&q=80',
   },
@@ -95,10 +75,15 @@ const activeProjects = [
 
 export default function Research() {
   const { pathname } = useLocation();
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  const displayedResearchAreas = showAll
+    ? researchAreas
+    : researchAreas.slice(0, 3);
 
   return (
     <div>
@@ -147,52 +132,55 @@ export default function Research() {
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {researchAreas.map((area, index) => {
-                const Icon = area.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
-                  >
-                    <div className="relative h-48 overflow-hidden">
+            <div className="space-y-12">
+              {displayedResearchAreas.map((area, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 p-6 lg:p-8"
+                >
+                  <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="lg:w-1/2 h-64 overflow-hidden rounded-xl">
                       <img
                         src={area.image}
                         alt={area.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4 p-3 bg-[#00897b] rounded-xl">
-                        <Icon className="text-white" size={24} />
-                      </div>
                     </div>
-                    <div className="p-6">
+                    <div className="lg:w-1/2 flex flex-col">
                       <h3
-                        className="text-xl font-bold text-gray-900 group-hover:text-[#630e1d] transition-colors"
+                        className="text-2xl font-bold text-gray-900 group-hover:text-[#630e1d] transition-colors"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         {area.title}
                       </h3>
-                      <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+                      <p className="mt-4 text-gray-600 leading-relaxed text-base">
                         {area.description}
                       </p>
-                      <div className="mt-4 flex items-center justify-between">
-                        <span className="text-sm text-[#00897b] font-medium">
-                          {area.publications} Publications
-                        </span>
-                        <ArrowRight
-                          size={18}
-                          className="text-[#630e1d] transition-transform group-hover:translate-x-2"
-                        />
-                      </div>
                     </div>
-                  </motion.div>
-                );
-              })}
+                  </div>
+                </motion.div>
+              ))}
+
+              {!showAll && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="flex justify-center pt-8"
+                >
+                  <button
+                    onClick={() => setShowAll(true)}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all hover:shadow-lg hover:shadow-[#00897b]/25"
+                  >
+                    See More
+                    <ArrowDown size={20} />
+                  </button>
+                </motion.div>
+              )}
             </div>
           </div>
         </section>
