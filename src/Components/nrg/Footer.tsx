@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const quickLinks = [
@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#630e1d] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="space-y-4">
             <h3
@@ -29,26 +29,6 @@ export default function Footer() {
               Engineering and Technology. Pioneering materials science for a
               sustainable future.
             </p>
-            <div className="flex gap-4 pt-2">
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <Twitter size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <Github size={18} />
-              </a>
-            </div>
           </div>
 
           {/* Contact */}
@@ -76,10 +56,6 @@ export default function Footer() {
                   nrg@buet.ac.bd
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-sm text-white/70">
-                <Phone size={18} className="flex-shrink-0" />
-                <span>+880 2 9665650</span>
-              </li>
             </ul>
           </div>
 
@@ -99,47 +75,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/90">
-              Resources
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  BUET Homepage
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  Department of Physics
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  Research Portal
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  Student Resources
-                </a>
-              </li>
             </ul>
           </div>
         </div>
