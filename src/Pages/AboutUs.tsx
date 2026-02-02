@@ -201,7 +201,9 @@ const alumni = [
 export default function AboutUs() {
   const { pathname } = useLocation();
   const [showAllMembers, setShowAllMembers] = useState(false);
+  const [showAllAlumni, setShowAllAlumni] = useState(false);
   const INITIAL_MEMBERS_TO_SHOW = 8;
+  const INITIAL_ALUMNI_TO_SHOW = 3;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -304,13 +306,13 @@ export default function AboutUs() {
                     <Mail size={18} />
                     Contact
                   </a>
-                  <a
+                  {/* <a
                     href="#"
                     className="flex items-center gap-2 px-6 py-3 border border-[#00897b] text-[#00897b] font-medium rounded-full hover:bg-[#00897b] hover:text-white transition-colors"
                   >
                     <Linkedin size={18} />
                     LinkedIn
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </motion.div>
@@ -404,34 +406,56 @@ export default function AboutUs() {
             </motion.div>
 
             <div className="space-y-4">
-              {alumni.map((alum, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="flex-shrink-0">
-                    <img
-                      src={alum.image}
-                      alt={alum.name}
-                      className="w-16 h-16 object-cover rounded-full"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900">
-                      {alum.name}{' '}
-                      <span className="text-sm text-[#00897b] font-normal">
-                        ({alum.degree})
-                      </span>
-                    </h4>
-                    <p className="text-sm text-gray-600">{alum.position}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {alumni
+                .slice(
+                  0,
+                  showAllAlumni ? alumni.length : INITIAL_ALUMNI_TO_SHOW
+                )
+                .map((alum, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="flex-shrink-0">
+                      <img
+                        src={alum.image}
+                        alt={alum.name}
+                        className="w-16 h-16 object-cover rounded-full"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900">
+                        {alum.name}{' '}
+                        <span className="text-sm text-[#00897b] font-normal">
+                          ({alum.degree})
+                        </span>
+                      </h4>
+                      <p className="text-sm text-gray-600">{alum.position}</p>
+                    </div>
+                  </motion.div>
+                ))}
             </div>
+
+            {alumni.length > INITIAL_ALUMNI_TO_SHOW && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setShowAllAlumni(!showAllAlumni)}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-[#630e1d] text-white font-medium rounded-full hover:bg-[#4a0a15] transition-colors"
+                >
+                  {showAllAlumni ? 'Show Less' : 'See More'}
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-300 ${
+                      showAllAlumni ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>
