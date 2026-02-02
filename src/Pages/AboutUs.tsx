@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
@@ -8,6 +8,7 @@ import {
   GraduationCap,
   BookOpen,
   ArrowRight,
+  ChevronDown,
 } from 'lucide-react';
 
 const pi = {
@@ -33,58 +34,122 @@ const teamMembers = [
   {
     name: 'Dr. Fatima Ahmed',
     role: 'Associate Professor',
-    specialization: 'Polymer Nanocomposites',
     image:
       'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
   },
   {
     name: 'Dr. Kamal Islam',
     role: 'Assistant Professor',
-    specialization: 'Electrocatalysis',
     image:
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
   },
   {
     name: 'Rashid Hossain',
     role: 'Ph.D. Student',
-    specialization: 'Solid-State Batteries',
     image:
       'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
   },
   {
     name: 'Ayesha Khan',
     role: 'Ph.D. Student',
-    specialization: 'Graphene Synthesis',
     image:
       'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
   },
   {
     name: 'Tariq Mahmud',
     role: 'Ph.D. Student',
-    specialization: 'Solar Cells',
     image:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
   },
   {
     name: 'Nadia Sultana',
     role: 'M.S. Student',
-    specialization: 'Nanomaterial Characterization',
     image:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
   },
   {
     name: 'Imran Ali',
     role: 'Research Associate',
-    specialization: 'Lab Management',
     image:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
   },
   {
     name: 'Sadia Rahman',
     role: 'M.S. Student',
-    specialization: 'Catalysis',
     image:
       'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80',
+  },
+  {
+    name: 'Farhana Akter',
+    role: 'Ph.D. Student',
+    image:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80',
+  },
+  {
+    name: 'Mohammad Uddin',
+    role: 'Ph.D. Student',
+    image:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
+  },
+  {
+    name: 'Shamima Begum',
+    role: 'M.S. Student',
+    image:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
+  },
+  {
+    name: 'Abdul Karim',
+    role: 'M.S. Student',
+    image:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+  },
+  {
+    name: 'Ruma Islam',
+    role: 'Ph.D. Student',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+  },
+  {
+    name: 'Habib Rahman',
+    role: 'Research Associate',
+    image:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+  },
+  {
+    name: 'Nusrat Jahan',
+    role: 'M.S. Student',
+    image:
+      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80',
+  },
+  {
+    name: 'Sakib Ahmed',
+    role: 'Ph.D. Student',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
+  },
+  {
+    name: 'Tanvir Hossain',
+    role: 'M.S. Student',
+    image:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
+  },
+  {
+    name: 'Mousumi Das',
+    role: 'Ph.D. Student',
+    image:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
+  },
+  {
+    name: 'Rafiqul Islam',
+    role: 'Research Assistant',
+    image:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+  },
+  {
+    name: 'Nasrin Akhter',
+    role: 'M.S. Student',
+    image:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
   },
 ];
 
@@ -108,6 +173,8 @@ const alumni = [
 
 export default function AboutUs() {
   const { pathname } = useLocation();
+  const [showAllMembers, setShowAllMembers] = useState(false);
+  const INITIAL_MEMBERS_TO_SHOW = 8;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -241,35 +308,54 @@ export default function AboutUs() {
             </motion.div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
-                >
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-gray-900">{member.name}</h3>
-                    <p className="text-sm text-[#00897b] font-medium">
-                      {member.role}
-                    </p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      {member.specialization}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+              {teamMembers
+                .slice(
+                  0,
+                  showAllMembers ? teamMembers.length : INITIAL_MEMBERS_TO_SHOW
+                )
+                .map((member, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-gray-900">{member.name}</h3>
+                      <p className="text-sm text-[#00897b] font-medium">
+                        {member.role}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
             </div>
+
+            {teamMembers.length > INITIAL_MEMBERS_TO_SHOW && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setShowAllMembers(!showAllMembers)}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-[#630e1d] text-white font-medium rounded-full hover:bg-[#4a0a15] transition-colors"
+                >
+                  {showAllMembers ? 'Show Less' : 'See More'}
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-300 ${
+                      showAllMembers ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
