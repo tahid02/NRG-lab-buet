@@ -156,18 +156,45 @@ const teamMembers = [
 const alumni = [
   {
     name: 'Dr. Zahir Hossain',
+    degree: 'PhD Materials Science, 2022',
     position: 'Assistant Professor, Dhaka University',
-    year: '2022',
+    image:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
   },
   {
     name: 'Dr. Nasreen Akter',
+    degree: 'PhD Electrical Engineering, 2021',
     position: 'Researcher, Samsung SDI',
-    year: '2021',
+    image:
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
   },
   {
     name: 'Dr. Rafiq Ahmed',
+    degree: 'PhD Physics, 2020',
     position: 'Postdoc, Stanford University',
-    year: '2020',
+    image:
+      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+  },
+  {
+    name: 'Dr. Nazifa Rumman',
+    degree: 'PhD Electrical Engineering, 2024',
+    position: 'Professor, University of Dhaka',
+    image:
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
+  },
+  {
+    name: 'Dr. Tanvir Ahmed',
+    degree: 'PhD Nanomaterials, 2023',
+    position: 'Businessman, Tech Innovations Ltd.',
+    image:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+  },
+  {
+    name: 'Dr. Farida Yasmin',
+    degree: 'PhD Materials Science, 2022',
+    position: 'Senior Researcher, Intel',
+    image:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
   },
 ];
 
@@ -384,15 +411,24 @@ export default function AboutUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{alum.name}</h4>
+                  <div className="flex-shrink-0">
+                    <img
+                      src={alum.image}
+                      alt={alum.name}
+                      className="w-16 h-16 object-cover rounded-full"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900">
+                      {alum.name}{' '}
+                      <span className="text-sm text-[#00897b] font-normal">
+                        ({alum.degree})
+                      </span>
+                    </h4>
                     <p className="text-sm text-gray-600">{alum.position}</p>
                   </div>
-                  <span className="text-sm text-[#00897b] font-medium mt-2 sm:mt-0">
-                    Graduated {alum.year}
-                  </span>
                 </motion.div>
               ))}
             </div>
