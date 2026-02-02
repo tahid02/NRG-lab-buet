@@ -8,6 +8,7 @@ import {
   Calendar,
   Users,
   Filter,
+  ChevronDown,
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -120,6 +121,8 @@ export default function Publications() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
+  const [showAllPublications, setShowAllPublications] = useState(false);
+  const INITIAL_PUBLICATIONS_TO_SHOW = 5;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -236,69 +239,93 @@ export default function Publications() {
             </p>
 
             <div className="space-y-6">
-              {filteredPublications.map((pub, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-[#630e1d]/20 transition-all group"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="hidden sm:flex p-3 bg-[#fff5f5] rounded-lg text-[#630e1d]">
-                      <FileText size={24} />
-                    </div>
-                    <div className="flex-1">
-                      <h3
-                        className="text-lg font-bold text-gray-900 group-hover:text-[#630e1d] transition-colors leading-tight"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {pub.title}
-                      </h3>
-
-                      <div className="flex items-center gap-2 mt-3 text-sm text-gray-600">
-                        <Users size={14} />
-                        <span>{pub.authors.join(', ')}</span>
+              {filteredPublications
+                .slice(
+                  0,
+                  showAllPublications
+                    ? filteredPublications.length
+                    : INITIAL_PUBLICATIONS_TO_SHOW
+                )
+                .map((pub, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-[#630e1d]/20 transition-all group"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="hidden sm:flex p-3 bg-[#fff5f5] rounded-lg text-[#630e1d]">
+                        <FileText size={24} />
                       </div>
-
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-sm">
-                        <span className="text-[#00897b] font-medium">
-                          {pub.journal}
-                        </span>
-                        <span className="text-gray-400">|</span>
-                        <span className="flex items-center gap-1 text-gray-500">
-                          <Calendar size={14} />
-                          {pub.year}
-                        </span>
-                        <span className="text-gray-400">|</span>
-                        <span className="text-gray-500">
-                          Vol. {pub.volume}, pp. {pub.pages}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-3 mt-4">
-                        <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                          {pub.category}
-                        </span>
-                        <span className="text-sm text-gray-500">
-                          {pub.citations} citations
-                        </span>
-                        <a
-                          href={`https://doi.org/${pub.doi}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-[#00897b] hover:underline ml-auto"
+                      <div className="flex-1">
+                        <h3
+                          className="text-lg font-bold text-gray-900 group-hover:text-[#630e1d] transition-colors leading-tight"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
                         >
-                          <ExternalLink size={14} />
-                          DOI
-                        </a>
+                          {pub.title}
+                        </h3>
+
+                        <div className="flex items-center gap-2 mt-3 text-sm text-gray-600">
+                          <Users size={14} />
+                          <span>{pub.authors.join(', ')}</span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-sm">
+                          <span className="text-[#00897b] font-medium">
+                            {pub.journal}
+                          </span>
+                          <span className="text-gray-400">|</span>
+                          <span className="flex items-center gap-1 text-gray-500">
+                            <Calendar size={14} />
+                            {pub.year}
+                          </span>
+                          <span className="text-gray-400">|</span>
+                          <span className="text-gray-500">
+                            Vol. {pub.volume}, pp. {pub.pages}
+                          </span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-3 mt-4">
+                          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                            {pub.category}
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            {pub.citations} citations
+                          </span>
+                          <a
+                            href={`https://doi.org/${pub.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#00897b] text-white text-sm font-medium rounded-lg hover:bg-[#00796b] transition-colors ml-auto"
+                          >
+                            <ExternalLink size={16} />
+                            DOI
+                          </a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
             </div>
+
+            {filteredPublications.length > INITIAL_PUBLICATIONS_TO_SHOW && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setShowAllPublications(!showAllPublications)}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-[#630e1d] text-white font-medium rounded-full hover:bg-[#4a0a15] transition-colors"
+                >
+                  {showAllPublications ? 'Show Less' : 'See More'}
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-300 ${
+                      showAllPublications ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+            )}
 
             {filteredPublications.length === 0 && (
               <div className="text-center py-16">
