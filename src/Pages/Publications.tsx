@@ -168,37 +168,6 @@ export default function Publications() {
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="py-12 bg-white border-b">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { number: '150+', label: 'Total Publications' },
-                { number: '8,500+', label: 'Total Citations' },
-                { number: '42', label: 'h-index' },
-                { number: '15', label: 'Journal Covers' },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div
-                    className="text-3xl lg:text-4xl font-bold text-[#630e1d]"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {stat.number}
-                  </div>
-                  <div className="mt-1 text-sm text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Filters */}
         <section className="py-8 bg-gray-50 sticky top-[72px] z-40 border-b">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
