@@ -143,14 +143,14 @@ export default function Research() {
                   className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 p-6 lg:p-8"
                 >
                   <div className="flex flex-col lg:flex-row gap-6">
-                    <div className="lg:w-1/2 h-64 overflow-hidden rounded-xl">
+                    <div className="lg:w-2/5 h-80 overflow-hidden rounded-xl">
                       <img
                         src={area.image}
                         alt={area.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>
-                    <div className="lg:w-1/2 flex flex-col">
+                    <div className="lg:w-3/5 flex flex-col">
                       <h3
                         className="text-2xl font-bold text-gray-900 group-hover:text-[#630e1d] transition-colors"
                         style={{ fontFamily: 'Playfair Display, serif' }}
