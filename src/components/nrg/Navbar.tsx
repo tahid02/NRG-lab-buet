@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Menu, X } from 'lucide-react';
@@ -12,6 +12,25 @@ export default function Navbar() {
     setIsOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
+
+  // Prefetch function for lazy-loaded routes
+  const prefetchRoute = useMemo(() => {
+    const prefetchers: Record<string, () => void> = {
+      'Research': () => import('@/pages/Research'),
+      'About Us': () => import('@/pages/AboutUs'),
+      'Publications': () => import('@/pages/Publications'),
+      'News': () => import('@/pages/News'),
+      'Facilities': () => import('@/pages/Facilities'),
+    };
+    return prefetchers;
+  }, []);
+
+  const handleMouseEnter = (path: string) => {
+    // Prefetch the route when hovering over the link
+    if (prefetchRoute[path]) {
+      prefetchRoute[path]();
+    }
+  };
 
   const navLinks = [
     { name: 'Research', path: 'Research' },
@@ -45,6 +64,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={createPageUrl(link.path)}
+                onMouseEnter={() => handleMouseEnter(link.path)}
                 className="text-sm font-medium text-gray-700 transition-all hover:text-[#00897b] relative group"
               >
                 {link.name}
@@ -82,6 +102,7 @@ export default function Navbar() {
                 >
                   <Link
                     to={createPageUrl(link.path)}
+                    onTouchStart={() => handleMouseEnter(link.path)}
                     className="block py-3 text-lg font-medium text-gray-800 hover:text-[#00897b] transition-colors border-b border-gray-100"
                   >
                     {link.name}
