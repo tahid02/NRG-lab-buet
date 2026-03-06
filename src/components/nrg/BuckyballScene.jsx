@@ -281,26 +281,33 @@ const InstancedBonds = React.memo(() => {
 export function BuckyballScene() {
   const [scale, setScale] = useState(0.8);
   const [isVisible, setIsVisible] = useState(true);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
   const containerRef = useRef(null);
 
   // Desktop detection and responsive scale
   useEffect(() => {
+    let timeoutId;
     const updateDevice = () => {
-      const w = window.innerWidth;
-      setIsDesktop(w >= 1024);
-      
-      if (w < 640) {
-        setScale(1.1);
-      } else if (w < 1024) {
-        setScale(1.0);
-      } else {
-        setScale(0.9);
-      }
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const w = window.innerWidth;
+        setIsDesktop(w >= 1024);
+        
+        if (w < 640) {
+          setScale(1.1);
+        } else if (w < 1024) {
+          setScale(1.0);
+        } else {
+          setScale(0.9);
+        }
+      }, 150);
     };
     updateDevice();
     window.addEventListener('resize', updateDevice);
-    return () => window.removeEventListener('resize', updateDevice);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', updateDevice);
+    };
   }, []);
 
   // Intersection Observer for pause-when-hidden
