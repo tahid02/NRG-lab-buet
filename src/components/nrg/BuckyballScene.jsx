@@ -160,28 +160,27 @@ const C60_BONDS = [
 ];
 
 // Enhanced Performance Monitor Component
-const PerformanceMonitor = () => {
+const PerformanceMonitor = ({ qualityLevel, setQualityLevel }) => {
   const frameCount = useRef(0);
   const lastTime = useRef(Date.now());
-  const fpsHistory = useRef<number[]>([]);
-  const [qualityLevel, setQualityLevel] = useState<'high' | 'medium' | 'low'>('high');
-  
+  const fpsHistory = useRef([]);
+
   useFrame(() => {
     frameCount.current++;
     const now = Date.now();
-    
+
     if (now - lastTime.current >= 1000) {
       const fps = frameCount.current;
-      
+
       // Track FPS history for better analysis
       fpsHistory.current.push(fps);
       if (fpsHistory.current.length > 10) {
         fpsHistory.current.shift();
       }
-      
+
       // Calculate average FPS
       const avgFps = fpsHistory.current.reduce((a, b) => a + b, 0) / fpsHistory.current.length;
-      
+
       // Adaptive quality adjustment
       if (avgFps < 25 && qualityLevel !== 'low') {
         console.warn(`[BuckyballScene] Very low FPS: ${avgFps} - Reducing quality to LOW`);
@@ -193,24 +192,17 @@ const PerformanceMonitor = () => {
         console.log(`[BuckyballScene] Good FPS: ${avgFps} - Restoring quality to HIGH`);
         setQualityLevel('high');
       }
-      
+
       // Log detailed performance metrics
       if (fps < 30) {
         console.warn(`[BuckyballScene] Performance Alert - FPS: ${fps}, Avg: ${avgFps.toFixed(1)}, Quality: ${qualityLevel}`);
       }
-      
+
       frameCount.current = 0;
       lastTime.current = now;
     }
   });
-  
-  // Quality settings based on performance level
-  const qualitySettings = {
-    high: { dpr: window.devicePixelRatio, lightIntensity: 1.0, floatSpeed: 1.5, rotationIntensity: 0.3, floatIntensity: 0.3 },
-    medium: { dpr: 1.5, lightIntensity: 0.8, floatSpeed: 1.2, rotationIntensity: 0.2, floatIntensity: 0.2 },
-    low: { dpr: 1, lightIntensity: 0.6, floatSpeed: 1.0, rotationIntensity: 0.15, floatIntensity: 0.15 },
-  };
-  
+
   return null;
 };
 
@@ -316,7 +308,15 @@ export function BuckyballScene() {
   const [scale, setScale] = useState(0.8);
   const [isVisible, setIsVisible] = useState(true);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [qualityLevel, setQualityLevel] = useState('high');
   const containerRef = useRef(null);
+
+  // Quality settings based on performance level
+  const qualitySettings = {
+    high: { dpr: window.devicePixelRatio, lightIntensity: 1.0, floatSpeed: 1.5, rotationIntensity: 0.3, floatIntensity: 0.3 },
+    medium: { dpr: 1.5, lightIntensity: 0.8, floatSpeed: 1.2, rotationIntensity: 0.2, floatIntensity: 0.2 },
+    low: { dpr: 1, lightIntensity: 0.6, floatSpeed: 1.0, rotationIntensity: 0.15, floatIntensity: 0.15 },
+  };
 
   // Desktop detection and responsive scale
   useEffect(() => {
@@ -352,21 +352,14 @@ export function BuckyballScene() {
       },
       { threshold: 0.1 }
     );
-    
+
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    
+
     return () => observer.disconnect();
   }, []);
 
-  // Desktop-specific optimizations with adaptive quality
-  const desktopDpr = isDesktop ? 1 : window.devicePixelRatio;
-  const desktopLightIntensity = isDesktop ? 0.8 : 1.0;
-  const desktopFloatSpeed = isDesktop ? 1.0 : 1.5;
-  const desktopRotationIntensity = isDesktop ? 0.2 : 0.3;
-  const desktopFloatIntensity = isDesktop ? 0.2 : 0.3;
-  
   // Apply adaptive quality settings based on performance
   const currentQualitySettings = qualitySettings[qualityLevel];
   const adaptiveDpr = isDesktop ? currentQualitySettings.dpr : window.devicePixelRatio;
@@ -382,8 +375,8 @@ export function BuckyballScene() {
         dpr={adaptiveDpr}
         frameloop={isVisible ? 'always' : 'demand'}
       >
-        <PerformanceMonitor />
-        
+        <PerformanceMonitor qualityLevel={qualityLevel} setQualityLevel={setQualityLevel} />
+
         {/* Adaptive lighting - intensity based on performance level */}
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 5, 5]} intensity={adaptiveLightIntensity} castShadow />
