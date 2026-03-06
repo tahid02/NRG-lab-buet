@@ -159,23 +159,57 @@ const C60_BONDS = [
   { a1: 59, a2: 57, type: 1 },
 ];
 
-// Performance Monitor Component
+// Enhanced Performance Monitor Component
 const PerformanceMonitor = () => {
   const frameCount = useRef(0);
   const lastTime = useRef(Date.now());
+  const fpsHistory = useRef<number[]>([]);
+  const [qualityLevel, setQualityLevel] = useState<'high' | 'medium' | 'low'>('high');
   
   useFrame(() => {
     frameCount.current++;
     const now = Date.now();
+    
     if (now - lastTime.current >= 1000) {
       const fps = frameCount.current;
-      if (fps < 30) {
-        console.warn(`[BuckyballScene] Low FPS detected: ${fps}`);
+      
+      // Track FPS history for better analysis
+      fpsHistory.current.push(fps);
+      if (fpsHistory.current.length > 10) {
+        fpsHistory.current.shift();
       }
+      
+      // Calculate average FPS
+      const avgFps = fpsHistory.current.reduce((a, b) => a + b, 0) / fpsHistory.current.length;
+      
+      // Adaptive quality adjustment
+      if (avgFps < 25 && qualityLevel !== 'low') {
+        console.warn(`[BuckyballScene] Very low FPS: ${avgFps} - Reducing quality to LOW`);
+        setQualityLevel('low');
+      } else if (avgFps < 35 && qualityLevel !== 'medium') {
+        console.warn(`[BuckyballScene] Low FPS: ${avgFps} - Reducing quality to MEDIUM`);
+        setQualityLevel('medium');
+      } else if (avgFps >= 45 && qualityLevel !== 'high') {
+        console.log(`[BuckyballScene] Good FPS: ${avgFps} - Restoring quality to HIGH`);
+        setQualityLevel('high');
+      }
+      
+      // Log detailed performance metrics
+      if (fps < 30) {
+        console.warn(`[BuckyballScene] Performance Alert - FPS: ${fps}, Avg: ${avgFps.toFixed(1)}, Quality: ${qualityLevel}`);
+      }
+      
       frameCount.current = 0;
       lastTime.current = now;
     }
   });
+  
+  // Quality settings based on performance level
+  const qualitySettings = {
+    high: { dpr: window.devicePixelRatio, lightIntensity: 1.0, floatSpeed: 1.5, rotationIntensity: 0.3, floatIntensity: 0.3 },
+    medium: { dpr: 1.5, lightIntensity: 0.8, floatSpeed: 1.2, rotationIntensity: 0.2, floatIntensity: 0.2 },
+    low: { dpr: 1, lightIntensity: 0.6, floatSpeed: 1.0, rotationIntensity: 0.15, floatIntensity: 0.15 },
+  };
   
   return null;
 };
@@ -326,31 +360,39 @@ export function BuckyballScene() {
     return () => observer.disconnect();
   }, []);
 
-  // Desktop-specific optimizations
+  // Desktop-specific optimizations with adaptive quality
   const desktopDpr = isDesktop ? 1 : window.devicePixelRatio;
   const desktopLightIntensity = isDesktop ? 0.8 : 1.0;
   const desktopFloatSpeed = isDesktop ? 1.0 : 1.5;
   const desktopRotationIntensity = isDesktop ? 0.2 : 0.3;
   const desktopFloatIntensity = isDesktop ? 0.2 : 0.3;
+  
+  // Apply adaptive quality settings based on performance
+  const currentQualitySettings = qualitySettings[qualityLevel];
+  const adaptiveDpr = isDesktop ? currentQualitySettings.dpr : window.devicePixelRatio;
+  const adaptiveLightIntensity = isDesktop ? currentQualitySettings.lightIntensity : 1.0;
+  const adaptiveFloatSpeed = isDesktop ? currentQualitySettings.floatSpeed : 1.5;
+  const adaptiveRotationIntensity = isDesktop ? currentQualitySettings.rotationIntensity : 0.3;
+  const adaptiveFloatIntensity = isDesktop ? currentQualitySettings.floatIntensity : 0.3;
 
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
-        dpr={desktopDpr}
+        dpr={adaptiveDpr}
         frameloop={isVisible ? 'always' : 'demand'}
       >
         <PerformanceMonitor />
         
-        {/* Desktop-optimized lighting - reduced intensity on desktop */}
+        {/* Adaptive lighting - intensity based on performance level */}
         <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={desktopLightIntensity} castShadow />
+        <directionalLight position={[5, 5, 5]} intensity={adaptiveLightIntensity} castShadow />
 
-        {/* Desktop-optimized animations - reduced intensity on desktop */}
+        {/* Adaptive animations - intensity based on performance level */}
         <Float 
-          speed={desktopFloatSpeed} 
-          rotationIntensity={desktopRotationIntensity} 
-          floatIntensity={desktopFloatIntensity}
+          speed={adaptiveFloatSpeed} 
+          rotationIntensity={adaptiveRotationIntensity} 
+          floatIntensity={adaptiveFloatIntensity}
         >
           <group scale={scale}>
             <InstancedBonds />
