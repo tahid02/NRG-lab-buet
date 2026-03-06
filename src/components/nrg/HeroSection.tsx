@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { BuckyballScene } from './BuckyballScene';
+
+// Lazy load the 3D component for better performance
+const BuckyballScene = lazy(() => import('./BuckyballScene').then(module => ({ default: module.BuckyballScene })));
 
 export default function HeroSection() {
   return (
@@ -90,7 +92,11 @@ export default function HeroSection() {
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#00897b]/10 via-transparent to-transparent rounded-full blur-3xl" />
 
-            <BuckyballScene />
+            <Suspense fallback={
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse rounded-lg" />
+            }>
+              <BuckyballScene />
+            </Suspense>
           </motion.div>
         </div>
       </div>

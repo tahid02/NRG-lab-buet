@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Float } from '@react-three/drei';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 const C60_ATOMS = [
@@ -159,45 +159,131 @@ const C60_BONDS = [
   { a1: 59, a2: 57, type: 1 },
 ];
 
-const Atom = ({ position }) => (
-  <mesh position={position}>
-    <sphereGeometry args={[0.15, 32, 32]} />
-    <meshPhysicalMaterial
-      color="#ffffff"
-      metalness={0.9}
-      roughness={0.1}
-      clearcoat={1}
-    />
-  </mesh>
-);
+// Performance Monitor Component
+const PerformanceMonitor = () => {
+  const frameCount = useRef(0);
+  const lastTime = useRef(Date.now());
+  
+  useFrame(() => {
+    frameCount.current++;
+    const now = Date.now();
+    if (now - lastTime.current >= 1000) {
+      const fps = frameCount.current;
+      if (fps < 30) {
+        console.warn(`[BuckyballScene] Low FPS detected: ${fps}`);
+      }
+      frameCount.current = 0;
+      lastTime.current = now;
+    }
+  });
+  
+  return null;
+};
 
-const Bond = ({ start, end, type }) => {
-  const { position, quaternion, length } = useMemo(() => {
-    const vStart = new THREE.Vector3(...start);
-    const vEnd = new THREE.Vector3(...end);
-    const distance = vStart.distanceTo(vEnd);
-    const midpoint = vStart.clone().add(vEnd).multiplyScalar(0.5);
+// Optimized Instanced Atoms Component
+const InstancedAtoms = React.memo(() => {
+  const atomsGeometry = useMemo(() => new THREE.SphereGeometry(0.15, 12, 12), []);
+  const atomsMaterial = useMemo(() => new THREE.MeshStandardMaterial({ 
+    color: '#ffffff', 
+    metalness: 0.7, 
+    roughness: 0.3 
+  }), []);
 
-    const direction = vEnd.clone().sub(vStart).normalize();
-    const quaternion = new THREE.Quaternion();
-    quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
+  const instancedAtoms = useMemo(() => {
+    const mesh = new THREE.InstancedMesh(atomsGeometry, atomsMaterial, C60_ATOMS.length);
+    C60_ATOMS.forEach((atom, i) => {
+      const matrix = new THREE.Matrix4();
+      matrix.setPosition(atom.x, atom.y, atom.z);
+      mesh.setMatrixAt(i, matrix);
+    });
+    return mesh;
+  }, [atomsGeometry, atomsMaterial]);
 
-    return { position: midpoint, quaternion, length: distance };
-  }, [start, end]);
+  return <primitive object={instancedAtoms} />;
+});
 
-  const radius = type === 2 ? 0.05 : 0.04;
+// Optimized Instanced Bonds Component
+const InstancedBonds = React.memo(() => {
+  const bondGeometries = useMemo(() => ({
+    type1: new THREE.CylinderGeometry(0.04, 0.04, 1, 8),
+    type2: new THREE.CylinderGeometry(0.05, 0.05, 1, 8),
+  }), []);
+  
+  const bondMaterial = useMemo(() => new THREE.MeshStandardMaterial({ 
+    color: '#cccccc', 
+    metalness: 0.7, 
+    roughness: 0.3 
+  }), []);
+
+  const { type1Bonds, type2Bonds } = useMemo(() => {
+    const type1 = [];
+    const type2 = [];
+    
+    C60_BONDS.forEach(bond => {
+      const vStart = new THREE.Vector3(
+        C60_ATOMS[bond.a1].x,
+        C60_ATOMS[bond.a1].y,
+        C60_ATOMS[bond.a1].z
+      );
+      const vEnd = new THREE.Vector3(
+        C60_ATOMS[bond.a2].x,
+        C60_ATOMS[bond.a2].y,
+        C60_ATOMS[bond.a2].z
+      );
+      
+      const distance = vStart.distanceTo(vEnd);
+      const midpoint = vStart.clone().add(vEnd).multiplyScalar(0.5);
+      const direction = vEnd.clone().sub(vStart).normalize();
+      
+      const quaternion = new THREE.Quaternion();
+      quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
+      
+      const bondData = { position: midpoint, quaternion, length: distance };
+      
+      if (bond.type === 1) {
+        type1.push(bondData);
+      } else {
+        type2.push(bondData);
+      }
+    });
+    
+    return { type1Bonds: type1, type2Bonds: type2 };
+  }, []);
+
+  const instancedType1 = useMemo(() => {
+    const mesh = new THREE.InstancedMesh(bondGeometries.type1, bondMaterial, type1Bonds.length);
+    type1Bonds.forEach((bond, i) => {
+      const matrix = new THREE.Matrix4();
+      matrix.compose(bond.position, bond.quaternion, new THREE.Vector3(1, bond.length, 1));
+      mesh.setMatrixAt(i, matrix);
+    });
+    return mesh;
+  }, [bondGeometries.type1, bondMaterial, type1Bonds]);
+
+  const instancedType2 = useMemo(() => {
+    const mesh = new THREE.InstancedMesh(bondGeometries.type2, bondMaterial, type2Bonds.length);
+    type2Bonds.forEach((bond, i) => {
+      const matrix = new THREE.Matrix4();
+      matrix.compose(bond.position, bond.quaternion, new THREE.Vector3(1, bond.length, 1));
+      mesh.setMatrixAt(i, matrix);
+    });
+    return mesh;
+  }, [bondGeometries.type2, bondMaterial, type2Bonds]);
 
   return (
-    <mesh position={position} quaternion={quaternion}>
-      <cylinderGeometry args={[radius, radius, length, 16]} />
-      <meshPhysicalMaterial color="#cccccc" metalness={0.8} roughness={0.2} />
-    </mesh>
+    <>
+      <primitive object={instancedType1} />
+      <primitive object={instancedType2} />
+    </>
   );
-};
+});
 
 export function BuckyballScene() {
   const [scale, setScale] = useState(0.8);
+  const [isVisible, setIsVisible] = useState(true);
+  const containerRef = useRef(null);
 
+  // Responsive scale
   useEffect(() => {
     const updateScale = () => {
       const w = window.innerWidth;
@@ -214,46 +300,49 @@ export function BuckyballScene() {
     return () => window.removeEventListener('resize', updateScale);
   }, []);
 
+  // Intersection Observer for pause-when-hidden
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
-        <pointLight position={[0, -10, 5]} intensity={0.5} color="#8080ff" />
+    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+      <Canvas 
+        camera={{ position: [0, 0, 10], fov: 45 }}
+        frameloop={isVisible ? 'always' : 'demand'}
+      >
+        <PerformanceMonitor />
+        
+        {/* Optimized lighting - reduced from 4 to 2 lights */}
+        <ambientLight intensity={0.7} />
+        <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
 
         <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
           <group scale={scale}>
-            {C60_BONDS.map((bond, i) => (
-              <Bond
-                key={`bond-${i}`}
-                start={[
-                  C60_ATOMS[bond.a1].x,
-                  C60_ATOMS[bond.a1].y,
-                  C60_ATOMS[bond.a1].z,
-                ]}
-                end={[
-                  C60_ATOMS[bond.a2].x,
-                  C60_ATOMS[bond.a2].y,
-                  C60_ATOMS[bond.a2].z,
-                ]}
-                type={bond.type}
-              />
-            ))}
-            {C60_ATOMS.map((atom, i) => (
-              <Atom key={`atom-${i}`} position={[atom.x, atom.y, atom.z]} />
-            ))}
+            <InstancedBonds />
+            <InstancedAtoms />
           </group>
         </Float>
 
         <OrbitControls
           enablePan={false}
+          enableZoom={false}
           minDistance={5}
           maxDistance={15}
-          autoRotate
-          autoRotateSpeed={0.5}
+          autoRotate={false}
+          enableDamping={false}
         />
-        <Environment preset="city" />
       </Canvas>
     </div>
   );
