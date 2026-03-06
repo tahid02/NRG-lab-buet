@@ -281,12 +281,15 @@ const InstancedBonds = React.memo(() => {
 export function BuckyballScene() {
   const [scale, setScale] = useState(0.8);
   const [isVisible, setIsVisible] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef(null);
 
-  // Responsive scale
+  // Desktop detection and responsive scale
   useEffect(() => {
-    const updateScale = () => {
+    const updateDevice = () => {
       const w = window.innerWidth;
+      setIsDesktop(w >= 1024);
+      
       if (w < 640) {
         setScale(1.1);
       } else if (w < 1024) {
@@ -295,9 +298,9 @@ export function BuckyballScene() {
         setScale(0.9);
       }
     };
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
+    updateDevice();
+    window.addEventListener('resize', updateDevice);
+    return () => window.removeEventListener('resize', updateDevice);
   }, []);
 
   // Intersection Observer for pause-when-hidden
@@ -316,19 +319,32 @@ export function BuckyballScene() {
     return () => observer.disconnect();
   }, []);
 
+  // Desktop-specific optimizations
+  const desktopDpr = isDesktop ? 1 : window.devicePixelRatio;
+  const desktopLightIntensity = isDesktop ? 0.8 : 1.0;
+  const desktopFloatSpeed = isDesktop ? 1.0 : 1.5;
+  const desktopRotationIntensity = isDesktop ? 0.2 : 0.3;
+  const desktopFloatIntensity = isDesktop ? 0.2 : 0.3;
+
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
+        dpr={desktopDpr}
         frameloop={isVisible ? 'always' : 'demand'}
       >
         <PerformanceMonitor />
         
-        {/* Optimized lighting - reduced from 4 to 2 lights */}
+        {/* Desktop-optimized lighting - reduced intensity on desktop */}
         <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+        <directionalLight position={[5, 5, 5]} intensity={desktopLightIntensity} castShadow />
 
-        <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
+        {/* Desktop-optimized animations - reduced intensity on desktop */}
+        <Float 
+          speed={desktopFloatSpeed} 
+          rotationIntensity={desktopRotationIntensity} 
+          floatIntensity={desktopFloatIntensity}
+        >
           <group scale={scale}>
             <InstancedBonds />
             <InstancedAtoms />
