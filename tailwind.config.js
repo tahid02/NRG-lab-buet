@@ -8,6 +8,10 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   prefix: "",
+  // Enable JIT mode for better performance (default in Tailwind 3, but explicit for clarity)
+  mode: 'jit',
+  // Safelist for dynamic classes that might be missed by tree-shaking
+  safelist: [],
   theme: {
     container: {
       center: true,
