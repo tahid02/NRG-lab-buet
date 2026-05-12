@@ -8,27 +8,27 @@ const researchItems = [
   {
     image:
       'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80',
-    headline: 'How do we double battery life?',
+    headline: 'Energy Storage Applications',
     description:
-      'Exploring nanostructured electrodes and solid-state electrolytes to create next-generation energy storage systems.',
+      'Next-generation materials for electrochemical energy storage, spanning high-energy-density lithium-ion and sodium-ion batteries, safe solid-state electrolytes, and high-power supercapacitors optimized for real-world grid and mobility applications.',
     boxBg: 'bg-[#fff5f5]',
     imageLeft: true,
   },
   {
     image:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-    headline: 'Can we build stronger materials?',
+    headline: 'Polymer & Composite Materials',
     description:
-      'Engineering polymer-nanoparticle composites with unprecedented strength-to-weight ratios.',
+      'Advanced polymers and composite materials leverage molecular architecture and multi-phase structuring to deliver exceptional mechanical, thermal, and responsive behaviors for aerospace, automotive, and biomedical engineering.',
     boxBg: 'bg-gray-50',
     imageLeft: false,
   },
   {
     image:
       'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80',
-    headline: 'What makes catalysts efficient?',
+    headline: 'Transition Metals',
     description:
-      'Designing atomic-scale catalytic sites for sustainable chemical transformations.',
+      'Elements of the d-block characterized by partially filled d orbitals form the chemical foundation of modern materials technology through rich coordination chemistry, catalytic versatility, and tunable electronic and magnetic properties.',
     boxBg: 'bg-[#fff5f5]',
     imageLeft: true,
   },
