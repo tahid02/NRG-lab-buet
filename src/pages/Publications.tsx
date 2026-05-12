@@ -15,106 +15,83 @@ import { Button } from '@/components/ui/button';
 
 const publications = [
   {
-    title:
-      'High-Performance Solid-State Lithium Batteries Using Nanostructured Garnet Electrolytes',
-    authors: ['Rahman M', 'Ahmed F', 'Hossain R'],
-    journal: 'Nature Nanotechnology',
-    year: 2024,
-    volume: '19',
-    pages: '234-245',
-    doi: '10.1038/s41565-024-xxxxx',
-    citations: 45,
-    category: 'Energy Storage',
+    title: 'Photoluminescence quenching in gold–MoS₂ hybrid nanoflakes',
+    authors: ['Bhanu U', 'Islam MR', 'Tetard L', 'Khondaker SI'],
+    journal: 'Scientific Reports',
+    year: 2014,
+    volume: '4',
+    pages: '5575',
+    doi: '10.1038/srep05575',
+    citations: 333,
+    category: '2D materials',
   },
   {
     title:
-      'Graphene-Polymer Nanocomposites with Ultra-High Thermal Conductivity',
-    authors: ['Ahmed F', 'Rahman M', 'Islam K'],
-    journal: 'Advanced Materials',
-    year: 2024,
-    volume: '36',
-    pages: '2301456',
-    doi: '10.1002/adma.2024xxxxx',
-    citations: 38,
-    category: 'Nanocomposites',
-  },
-  {
-    title: 'Atomically Dispersed Catalysts for Efficient CO2 Electroreduction',
-    authors: ['Islam K', 'Khan A', 'Rahman M'],
-    journal: 'Science',
-    year: 2023,
-    volume: '382',
-    pages: '768-774',
-    doi: '10.1126/science.xxxxx',
-    citations: 156,
-    category: 'Catalysis',
-  },
-  {
-    title: 'MXene-Based Supercapacitors with Record Energy Density',
-    authors: ['Hossain R', 'Rahman M'],
-    journal: 'Joule',
-    year: 2023,
-    volume: '7',
-    pages: '1523-1540',
-    doi: '10.1016/j.joule.2023.xxxxx',
-    citations: 89,
-    category: 'Energy Storage',
-  },
-  {
-    title: 'Interface Engineering for Efficient Perovskite Solar Cells',
-    authors: ['Mahmud T', 'Rahman M', 'Ahmed F'],
-    journal: 'Energy & Environmental Science',
-    year: 2023,
+      'Structural, optical and photocatalysis properties of sol-gel deposited Al-doped ZnO thin films',
+    authors: ['Islam MR', 'Rahman M', 'Farhad SFU', 'Podder J'],
+    journal: 'Surfaces and Interfaces',
+    year: 2019,
     volume: '16',
-    pages: '2890-2905',
-    doi: '10.1039/d3ee00xxx',
-    citations: 67,
-    category: 'Solar Energy',
+    pages: '120-126',
+    doi: '10.1016/j.surfin.2019.05.007',
+    citations: 325,
+    category: 'Thin film',
   },
   {
-    title: 'Scalable Synthesis of 2D Transition Metal Dichalcogenides',
-    authors: ['Khan A', 'Islam K', 'Rahman M'],
-    journal: 'ACS Nano',
-    year: 2023,
-    volume: '17',
-    pages: '4567-4580',
-    doi: '10.1021/acsnano.3cxxxxx',
-    citations: 52,
-    category: '2D Materials',
+    title:
+      'Tuning the electrical property via defect engineering of single layer MoS₂ by oxygen plasma',
+    authors: [
+      'Islam MR',
+      'Kang N',
+      'Bhanu U',
+      'Paudel HP',
+      'Erementchouk M',
+      'Tetard L',
+      'Leuenberger MN',
+      'Khondaker SI',
+    ],
+    journal: 'Nanoscale',
+    year: 2014,
+    volume: '6',
+    pages: '10033-10039',
+    doi: '10.1039/C4NR02142H',
+    citations: 304,
+    category: '2D materials',
   },
   {
-    title: 'Nanostructured Electrodes for Next-Generation Batteries',
-    authors: ['Rahman M', 'Hossain R'],
-    journal: 'Chemical Reviews',
-    year: 2022,
-    volume: '122',
-    pages: '12345-12400',
-    doi: '10.1021/acs.chemrev.2cxxxxx',
-    citations: 234,
-    category: 'Energy Storage',
+    title:
+      'Optical properties of ZnO nano fiber thin films grown by spray pyrolysis of zinc acetate precursor',
+    authors: ['Islam MR', 'Podder J'],
+    journal: 'Crystal Research and Technology',
+    year: 2009,
+    volume: '44',
+    pages: '286-292',
+    doi: '10.1002/crat.200800326',
+    citations: 227,
+    category: 'Thin film',
   },
   {
-    title: 'Polymer-Clay Nanocomposites: A Comprehensive Review',
-    authors: ['Ahmed F', 'Sultana N', 'Rahman M'],
-    journal: 'Progress in Materials Science',
-    year: 2022,
-    volume: '130',
-    pages: '100995',
-    doi: '10.1016/j.pmatsci.2022.xxxxx',
-    citations: 178,
-    category: 'Nanocomposites',
+    title:
+      'Two-dimensional lateral heterojunction through bandgap engineering of MoS₂ via oxygen plasma',
+    authors: ['Choudhary N', 'Islam MR', 'Kang N', 'Tetard L', 'Jung Y', 'Khondaker SI'],
+    journal: 'Journal of Physics: Condensed Matter',
+    year: 2016,
+    volume: '28',
+    pages: '364002',
+    doi: '10.1088/0953-8984/28/36/364002',
+    citations: 99,
+    category: '2D materials',
   },
 ];
 
 const categories = [
   'All',
-  'Energy Storage',
-  'Nanocomposites',
-  'Catalysis',
-  'Solar Energy',
-  '2D Materials',
+  'Nanotechnology',
+  'Carbon nanotube',
+  '2D materials',
+  'Thin film',
 ];
-const years = ['All', '2024', '2023', '2022'];
+const years = ['All', '2019', '2016', '2014', '2009'];
 
 export default function Publications() {
   const { pathname } = useLocation();
@@ -122,7 +99,7 @@ export default function Publications() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
   const [showAllPublications, setShowAllPublications] = useState(false);
-  const INITIAL_PUBLICATIONS_TO_SHOW = 5;
+  const INITIAL_PUBLICATIONS_TO_SHOW = 3;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -164,7 +141,8 @@ export default function Publications() {
                 Our Research Impact
               </h1>
               <p className="mt-6 text-xl text-gray-600 leading-relaxed">
-                Explore our peer-reviewed publications in leading scientific
+                Explore our peer-reviewed publications on 2D materials,
+                nanotechnology, and thin film research in leading scientific
                 journals.
               </p>
             </motion.div>
