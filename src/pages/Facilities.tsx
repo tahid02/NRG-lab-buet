@@ -5,60 +5,53 @@ import { ArrowDown } from 'lucide-react';
 
 const machinery = [
   {
-    name: 'X-Ray Diffraction (XRD) System',
+    name: 'Contact angle measurement setup',
     description:
-      'Advanced X-ray diffraction system for crystal structure analysis and phase identification of nanomaterials. Provides precise measurements of lattice parameters and crystallinity. This system enables researchers to determine the atomic and molecular structure of crystalline materials with high accuracy, making it essential for characterizing synthesized nanoparticles, thin films, and bulk materials. The instrument features multiple detector options and automated sample handling for high-throughput analysis.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80',
+      'https://i.ibb.co/GQRBzNxG/image.png',
   },
   {
-    name: 'Scanning Electron Microscope (SEM)',
+    name: 'uv-vis double beam spectrophotometer',
     description:
-      'High-resolution scanning electron microscope for surface morphology analysis and elemental mapping. Capable of imaging nanostructures with sub-nanometer resolution. The SEM provides detailed topographical and compositional information through secondary and backscattered electron imaging. Equipped with energy-dispersive X-ray spectroscopy (EDS) for elemental analysis, allowing researchers to identify and map the distribution of elements within samples.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80',
+      'https://i.ibb.co/LzCKBwSS/image.png',
   },
   {
-    name: 'Transmission Electron Microscope (TEM)',
+    name: 'electrochemical workstation',
     description:
-      'State-of-the-art TEM for atomic-scale imaging and diffraction analysis. Essential for studying internal structure and defects in nanomaterials. This instrument offers resolution down to 0.1 nm, enabling direct observation of atomic arrangements. Features include selected area electron diffraction (SAED) for crystal structure determination and high-angle annular dark-field (HAADF) imaging for Z-contrast imaging.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&q=80',
+      'https://i.ibb.co/q3BNF561/image.png',
   },
   {
-    name: 'Glove Box System',
+    name: 'FTIR',
     description:
-      'Inert atmosphere glove box for handling air-sensitive materials. Features oxygen and moisture levels below 1 ppm for safe manipulation of reactive compounds. The system includes antechambers for sample transfer without breaking the inert atmosphere, integrated solvent purification system, and gas monitoring sensors. Essential for handling air-sensitive precursors, nanomaterials, and conducting chemical reactions under controlled conditions.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80',
+      'https://i.ibb.co/8gfSsX3D/image.png',
   },
   {
-    name: 'Electrochemical Workstation',
+    name: 'Oven',
     description:
-      'Multi-channel potentiostat/galvanostat for comprehensive electrochemical characterization. Supports battery testing, corrosion studies, and sensor development. Features include impedance spectroscopy, cyclic voltammetry, chronoamperometry, and galvanostatic cycling. Compatible with various cell configurations including coin cells, pouch cells, and three-electrode setups for fundamental electrochemical research.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80',
+      'https://i.ibb.co/8njTX15F/image.png',
   },
   {
-    name: 'Vacuum Furnace',
+    name: 'Centrifuge mechine',
     description:
-      'High-temperature vacuum furnace for material synthesis and annealing. Capable of reaching temperatures up to 1800°C under controlled atmosphere. The system features programmable temperature profiles, vacuum levels down to 10^-6 Torr, and gas flow control. Ideal for sintering ceramics, annealing thin films, and synthesizing materials under controlled thermal conditions with minimal contamination.',
+      '',
     image:
-      'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
+      'https://i.ibb.co/whkPzmfL/image.png',
   },
   {
-    name: 'Ball Mill System',
+    name: 'WM MS Sonicator',
     description:
-      'Planetary ball mill for mechanical alloying and nanoparticle synthesis. Provides precise control over milling speed and time for reproducible results. Features include variable rotation speeds (up to 1000 rpm), different milling media options, and programmable cycles. Essential for producing nanomaterials through mechanical grinding, alloying immiscible metals, and creating composite materials with uniform particle size distribution.',
+      'precision balance ( left) ,Magnetic Stirrer(middle 2),  bath sonicator(right)',
     image:
-      'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80',
-  },
-  {
-    name: 'Spectroscopy Suite',
-    description:
-      'Comprehensive spectroscopy equipment including FTIR, Raman, and UV-Vis spectroscopy. Essential for chemical composition and optical property analysis. The FTIR system provides molecular fingerprinting through infrared absorption, Raman spectroscopy offers vibrational analysis with high spatial resolution, and UV-Vis spectroscopy enables bandgap determination and optical characterization of nanomaterials.',
-    image:
-      'https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&q=80',
+      'https://i.ibb.co/chNzLb4t/WM-MS-Sonicator.png',
   },
 ];
 
