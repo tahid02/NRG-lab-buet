@@ -7,21 +7,25 @@ const machinery = [
   {
     name: 'Contact angle measurement setup',
     description:
-      '',
+      'The Nanocomposite Research Group utilizes a high-precision Contact Angle Measurement Setup to characterize the surface energy, wettability, and interfacial properties of advanced materials. Equipped with a high-resolution, multi-spectral ADCAM-02 imaging system operating at a fine resolution of $0.1\ \mu\text{m}$, this specialized apparatus allows researchers to accurately capture and analyze liquid-solid interactions on a microscopic level. The system features a versatile z-axis translation range of 0–150 mm and is fully integrated with a dedicated MMC-8C multi-motor control module and MDU-4D micro-drive unit. This configuration ensures sub-micron accuracy during automated droplet deposition and substrate positioning, enabling highly repeatable static and dynamic contact angle evaluations.Understanding surface wetting characteristics is crucial for engineering high-performance nanocomposites. This facility plays a pivotal role in optimizing thin-film coatings, verifying the successful surface modification of nanomaterials, and predicting the dispersion and adhesion quality of nanofillers within polymer matrices. By providing quantitative data on hydrophobic or hydrophilic behaviors, this setup directly supports the development of tailored biomaterials, self-cleaning coatings, and robust functional composites.',
     image:
       'https://i.ibb.co/GQRBzNxG/image.png',
   },
   {
-    name: 'uv-vis double beam spectrophotometer',
+    name: 'UV-Vis double beam spectrophotometer',
     description:
-      '',
+      `The Nanocomposite Research Group's facilities feature a high-performance HALO DB-20S UV-Vis Double Beam Spectrophotometer, a cornerstone instrument for the optical and structural characterization of nanomaterials. Operating across a broad spectrum spanning ultraviolet (UV) and visible light wavelengths, this double-beam architecture simultaneously measures the sample and a reference blank. This design effectively eliminates light source fluctuations and drift, ensuring exceptional baseline stability, photometric accuracy, and reproducibility for demanding quantitative analyses.
+
+In nanocomposite research, this facility is indispensable for investigating the optical properties, bandgap energy, and electronic structures of engineered materials. It allows researchers to actively monitor the synthesis of nanoparticles via localized surface plasmon resonance (LSPR) peaks, evaluate the transparency and UV-shielding efficiency of functional polymer films, and analyze the concentration and dispersion stability of nanofillers in various matrices. Integrated with dedicated data acquisition software, this system enables seamless kinetic studies, spectral scanning, and multi-wavelength analysis essential for advancing smart materials and thin-film technologies.`,
     image:
       'https://i.ibb.co/LzCKBwSS/image.png',
   },
   {
-    name: 'electrochemical workstation',
+    name: 'Electrochemical workstation',
     description:
-      '',
+      `The laboratory is equipped with a high-precision Potentiostat/Galvanostat Electrochemical Workstation dedicated to exploring the electrical and interfacial phenomena of advanced material systems. This versatile system serves as a foundational platform for comprehensive electrochemical analysis, offering precise control over potential and current across a multi-electrode configuration. It supports an extensive suite of standard testing modalities, including Cyclic Voltammetry (CV), Linear Sweep Voltammetry (LSV), Chronoamperometry, and Electrochemical Impedance Spectroscopy (EIS), allowing for the rigorous evaluation of charge transfer kinetics and redox behaviors.
+
+In the context of nanocomposite engineering, this facility is critical for characterizing energy storage and surface-active materials. Researchers utilize the workstation to evaluate the specific capacitance and cycling stability of supercapacitor electrodes, analyze the catalytic efficiency of novel nanocomposites, and investigate the corrosion inhibition properties of protective polymer coatings. By delivering high-resolution data on electron transport mechanisms, this system accelerates the design and optimization of functional nanomaterials for next-generation energy, sensor, and environmental applications.`,
     image:
       'https://i.ibb.co/q3BNF561/image.png',
   },
