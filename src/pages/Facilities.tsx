@@ -32,28 +32,36 @@ In the context of nanocomposite engineering, this facility is critical for chara
   {
     name: 'FTIR',
     description:
-      '',
+      `The facility features a compact, high-performance Shimadzu IRSpirit Fourier Transform Infrared (FTIR) Spectrophotometer, equipped with a QATR-S single-reflection Attenuated Total Reflection (ATR) accessory. This advanced setup allows for the direct, non-destructive analysis of solid, liquid, and powder samples without requiring extensive preparation such as KBr pellet pressing. By measuring the characteristic infrared absorption and molecular vibrations of a material, the system generates high-resolution spectra that serve as a molecular fingerprint for rapid and precise chemical identification.
+
+This instrument is essential for verifying the molecular architecture and chemical composition of engineered materials. It is primarily utilized to confirm the successful surface functionalization of nanomaterials, monitor chemical cross-linking in polymer matrices, and detect interfacial bonding between nanofillers and host substrates. Additionally, the system plays a critical role in identifying unknown contaminants, analyzing degradation mechanisms, and ensuring structural purity, making it an indispensable asset for the development of tailored functional composites.`,
     image:
       'https://i.ibb.co/8gfSsX3D/image.png',
   },
   {
     name: 'Oven',
     description:
-      '',
+      `The laboratory features a series of high-performance Laboratory Drying Ovens designed for precise thermal processing, moisture removal, and sample conditioning. These units provide reliable, uniform temperature control across a broad operating range, featuring digital PID controllers and integrated observation windows for safe, real-time monitoring of internal processes. The multi-unit configuration allows researchers to concurrently run independent thermal cycles at varying temperatures—such as standard solvent evaporation or high-temperature curing—maximizing workflow efficiency.
+
+In nanomaterial and composite processing, these ovens are essential for a wide range of critical synthesis and post-treatment steps. They are routinely utilized for the controlled drying of synthesized nanoparticles and colloidal precipitates, the uniform evaporation of casting solvents from polymer-matrix thin films, and the thermal cross-linking of functional thermoset composites. By delivering stable and reproducible thermal environments, this facility ensures optimal structural integrity, eliminates structural defects caused by trapped volatile elements, and ensures consistent material properties across processed batches.`,
     image:
       'https://i.ibb.co/8njTX15F/image.png',
   },
   {
     name: 'Centrifuge mechine',
     description:
-      '',
+      `The facility utilizes a Biobase BKC-TH16II High-Speed Centrifuge, a vital benchmarking instrument for the liquid-phase separation, purification, and processing of chemical mixtures. This benchtop unit leverages controlled centrifugal force to rapidly isolate components of varying densities suspended in solution. Equipped with a microcomputer control system, it allows users to precisely program operational parameters such as rotational speed, Relative Centrifugal Force (RCF), processing time, and acceleration/deceleration profiles via an intuitive digital display, ensuring optimal sediment recovery and sample stability.
+
+In advanced materials synthesis, this centrifuge is foundational for the isolation and washing steps of wet-chemical processes. Researchers routinely employ the system to harvest synthesized nanoparticles, quantum dots, or functionalized carbon nanotubes from liquid reaction mixtures, separating them cleanly from excess precursors, surfactants, or unreacted byproducts. By facilitating highly efficient phase separation and purification protocols, the unit directly ensures the chemical purity, structural uniformity, and batch-to-batch consistency of nanomaterials prior to their dispersion into functional composite matrices.`,
     image:
       'https://i.ibb.co/whkPzmfL/image.png',
   },
   {
     name: 'WM MS Sonicator',
     description:
-      'precision balance ( left) ,Magnetic Stirrer(middle 2),  bath sonicator(right)',
+      `The laboratory features a highly integrated Material Synthesis and Preparation Station, combining precision weighing, thermal mixing, and ultrasonic processing equipment into a centralized workflow. On the left, a high-resolution Analytical Precision Balance enclosed in a draft shield provides accurate measurement of chemical precursors and nanofillers down to sub-milligram levels, ensuring strict stoichiometric control during batch formulation. In the center, a pair of Hotplate Magnetic Stirrers offers independent, simultaneous control over rotational speed and heating. This allows for steady chemical reactions, uniform dissolution of polymers, and the maintaining of consistent solution temperatures during fluid processing.
+
+Completing the workstation on the right is a digital Ultrasonic Bath Sonicator. This unit utilizes high-frequency acoustic cavitation to disrupt agglomerated nanoparticles and facilitate liquid-phase exfoliation. In nanocomposite processing, this combined setup is critical for achieving a uniform, defect-free dispersion of nanomaterials—such as carbon nanotubes, graphene oxide, or metallic nanoparticles—within monomer or polymer solutions prior to casting or polymerization, directly preventing particle aggregation and ensuring isotropic material properties.`,
     image:
       'https://i.ibb.co/chNzLb4t/WM-MS-Sonicator.png',
   },
