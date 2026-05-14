@@ -12,6 +12,7 @@ export function createPageUrl(pageName: string): string {
     'About Us': '/about-us',
     Publications: '/publications',
     News: '/news',
+    Gallery: '/gallery',
     Facilities: '/facilities',
   };
 

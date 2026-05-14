@@ -11,6 +11,7 @@ const Research = lazy(() => import('@/pages/Research').then(module => ({ default
 const AboutUs = lazy(() => import('@/pages/AboutUs').then(module => ({ default: module.default })));
 const Publications = lazy(() => import('@/pages/Publications').then(module => ({ default: module.default })));
 const News = lazy(() => import('@/pages/News').then(module => ({ default: module.default })));
+const Gallery = lazy(() => import('@/pages/Gallery').then(module => ({ default: module.default })));
 const Facilities = lazy(() => import('@/pages/Facilities').then(module => ({ default: module.default })));
 
 // Loading fallback component
@@ -33,6 +34,7 @@ function App() {
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/publications" element={<Publications />} />
               <Route path="/news" element={<News />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/facilities" element={<Facilities />} />
             </Routes>
           </Suspense>
