@@ -30,7 +30,7 @@ const pi = {
   email: 'rahman@buet.ac.bd',
 };
 
-const teamMembers = [
+const currentMembers = [
   {
     name: 'Dr. Fatima Ahmed',
     role: 'Associate Professor',
@@ -91,6 +91,9 @@ const teamMembers = [
     image:
       'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
   },
+];
+
+const otherMembers = [
   {
     name: 'Shamima Begum',
     role: 'M.S. Student',
@@ -197,9 +200,6 @@ const alumni = [
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
   },
 ];
-
-const currentMembers = teamMembers.slice(0, 10);
-const otherMembers = teamMembers.slice(10);
 
 export default function AboutUs() {
   const { pathname } = useLocation();
