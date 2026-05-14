@@ -6,9 +6,8 @@ import {
   Mail,
   Linkedin,
   GraduationCap,
-  BookOpen,
-  ArrowRight,
   ChevronDown,
+  Users,
 } from 'lucide-react';
 
 const pi = {
@@ -18,14 +17,17 @@ const pi = {
     'https://placehold.net/avatar-2.png',
   bio: 'Dr. Muhammad Rakibul Islam is currently working as a Professor in the Department of Physics at Bangladesh University of Engineering and Technology (BUET), Dhaka, Bangladesh. He completed his Ph.D. in Physics from University of Central Florida (UCF), USA in May 2015. In his PhD, he worked on the fabrication of the carbon nanotube and 2D materials (more specifically, Graphene and MoS2) based nano-electronic devices and study their electron transport properties.',
   education: [
-    'Ph.D. Materials Science, MIT (2008)',
-    'M.S. Physics, BUET (2003)',
-    'B.S. Physics, BUET (2001)',
+    'Ph.D. Physics, University of Central Florida (2015)',
+    'M.Sc Physics, University of Central Florida (2011)',
+    'M. Phil Physics, Bangladesh University of Engineering and Technology, BUET (2009)',
+    'M.SC Physics, University of Dhaka (2002)',
+    'B.S. Physics, University of Dhaka (2001)',
   ],
-  awards: [
-    'National Science Award, Bangladesh (2024)',
-    'TWAS Prize for Physics (2022)',
-    'Young Scientist Award, IUPAP (2015)',
+  professionalDevelopmentOutreach: [
+    'Served as President at the Bangladesh student association at UCF, 2012-2013.',
+    'Member, Graduate Society of Physics Students (GSPS)',
+    'Member, American Physical Society (APS)',
+    'Life member, Bangladesh Physical Society (BPS)',
   ],
   email: 'rahman@buet.ac.bd',
 };
@@ -279,29 +281,83 @@ export default function AboutUs() {
 
                 <p className="text-gray-600 leading-relaxed">{pi.bio}</p>
 
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="flex items-center gap-2 font-semibold text-gray-900 mb-2">
-                      <GraduationCap size={18} className="text-[#00897b]" />
-                      Education
-                    </h4>
-                    <ul className="space-y-1 text-sm text-gray-600">
-                      {pi.education.map((edu, i) => (
-                        <li key={i}>{edu}</li>
-                      ))}
-                    </ul>
+                <div className="grid gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-8">
+                  <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-[#00897b]/[0.06] via-white to-white p-5 shadow-sm ring-1 ring-black/[0.03] sm:p-6">
+                    <div
+                      className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#00897b] to-[#00897b]/40"
+                      aria-hidden
+                    />
+                    <div className="pl-3 sm:pl-4">
+                      <div className="mb-5 flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#00897b]/15 text-[#00897b] shadow-inner">
+                          <GraduationCap className="h-6 w-6" strokeWidth={1.75} />
+                        </div>
+                        <div className="min-w-0 pt-0.5">
+                          <h3
+                            id="pi-education-heading"
+                            className="text-base font-semibold tracking-tight text-gray-900 text-balance sm:text-lg"
+                          >
+                            Education
+                          </h3>
+                          <p className="mt-1 text-xs leading-snug text-gray-500 sm:text-sm">
+                            Degrees and formal training
+                          </p>
+                        </div>
+                      </div>
+                      <ul
+                        className="space-y-3"
+                        aria-labelledby="pi-education-heading"
+                      >
+                        {pi.education.map((edu, i) => (
+                          <li key={i} className="flex gap-3 text-sm leading-relaxed text-gray-700 sm:text-[0.9375rem]">
+                            <span
+                              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00897b] ring-[3px] ring-[#00897b]/15"
+                              aria-hidden
+                            />
+                            <span className="min-w-0">{edu}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <div>
-                    <h4 className="flex items-center gap-2 font-semibold text-gray-900 mb-2">
-                      <BookOpen size={18} className="text-[#00897b]" />
-                      Selected Awards
-                    </h4>
-                    <ul className="space-y-1 text-sm text-gray-600">
-                      {pi.awards.map((award, i) => (
-                        <li key={i}>{award}</li>
-                      ))}
-                    </ul>
+                  <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-[#630e1d]/[0.05] via-white to-white p-5 shadow-sm ring-1 ring-black/[0.03] sm:p-6">
+                    <div
+                      className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#630e1d] to-[#630e1d]/40"
+                      aria-hidden
+                    />
+                    <div className="pl-3 sm:pl-4">
+                      <div className="mb-5 flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#630e1d]/10 text-[#630e1d] shadow-inner">
+                          <Users className="h-6 w-6" strokeWidth={1.75} />
+                        </div>
+                        <div className="min-w-0 pt-0.5">
+                          <h3
+                            id="pi-outreach-heading"
+                            className="text-base font-semibold tracking-tight text-gray-900 text-balance sm:text-lg"
+                          >
+                            Professional Development and Outreach
+                          </h3>
+                          <p className="mt-1 text-xs leading-snug text-gray-500 sm:text-sm">
+                            Leadership and professional memberships
+                          </p>
+                        </div>
+                      </div>
+                      <ul
+                        className="space-y-3"
+                        aria-labelledby="pi-outreach-heading"
+                      >
+                        {pi.professionalDevelopmentOutreach.map((item, i) => (
+                          <li key={i} className="flex gap-3 text-sm leading-relaxed text-gray-700 sm:text-[0.9375rem]">
+                            <span
+                              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#630e1d] ring-[3px] ring-[#630e1d]/12"
+                              aria-hidden
+                            />
+                            <span className="min-w-0">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
