@@ -7,47 +7,46 @@ const machinery = [
   {
     name: 'Contact angle measurement setup',
     description:
-`The laboratory utilizes a high-precision Contact Angle Measurement Setup to characterize the surface energy, wettability, and interfacial properties of advanced materials. Equipped with a high-resolution, multi-spectral ADCAM-02 imaging system operating at $0.1\ \mu\text{m}$, this apparatus allows researchers to accurately capture and analyze liquid-solid interactions on a microscopic level. Fully integrated with an MMC-8C multi-motor control module and MDU-4D micro-drive unit, this configuration ensures sub-micron accuracy during automated droplet deposition and substrate positioning. 
-\n\n This setup directly supports the development of functional composites by evaluating the dispersion and adhesion quality of nanofillers within polymer matrices.`,    image:
-      'https://i.ibb.co/GQRBzNxG/image.png',
+      `Our high-precision Contact Angle Measurement Setup characterizes the surface energy, wettability, and interfacial properties of advanced materials. Equipped with a 0.1 μm multi-spectral ADCAM-02 imaging system and automated micro-drive controls (MMC-8C and MDU-4D), the apparatus ensures sub-micron accuracy during droplet deposition and substrate positioning. By precisely analyzing microscopic liquid-solid interactions, this facility actively supports the development of functional composites by evaluating nanofiller dispersion and adhesion within polymer matrices.`, image:
+      '/public/images/facilities/contact angle measurement.png',
   },
   {
     name: 'UV-Vis double beam spectrophotometer',
     description:
-     `The facilities feature a high-performance HALO DB-20S UV-Vis Double Beam Spectrophotometer, a cornerstone instrument for the optical and structural characterization of nanomaterials. Operating across ultraviolet and visible light wavelengths, its double-beam architecture simultaneously measures the sample and a reference blank to eliminate light source fluctuations and ensure exceptional baseline stability. This facility is indispensable for investigating optical properties, bandgap energy, and electronic structures. It allows researchers to monitor nanoparticle synthesis via localized surface plasmon resonance peaks and evaluate the transparency and UV-shielding efficiency of functional polymer films.`,    image:
-      'https://i.ibb.co/LzCKBwSS/image.png',
+      `Our facility features a high-performance HALO DB-20S UV-Vis Double Beam Spectrophotometer for the precise optical and structural characterization of nanomaterials. Its double-beam architecture measures both sample and reference simultaneously, ensuring exceptional baseline stability by eliminating light source fluctuations. This instrument is essential for determining bandgap energies, monitoring nanoparticle synthesis via localized surface plasmon resonance, and evaluating the transparency and UV-shielding efficiency of functional polymer films.`, image:
+      '/public/images/facilities/uv_spectroscopy.jpeg',
   },
   {
     name: 'Electrochemical workstation',
     description:
-`The laboratory is equipped with a high-precision Potentiostat/Galvanostat Electrochemical Workstation dedicated to exploring the electrical and interfacial phenomena of advanced material systems. Offering precise control over potential and current across a multi-electrode configuration, it supports an extensive suite of standard testing modalities, including Cyclic Voltammetry (CV) and Electrochemical Impedance Spectroscopy (EIS). This facility is critical for characterizing energy storage and surface-active materials. Researchers utilize the workstation to evaluate the specific capacitance of supercapacitor electrodes, analyze catalytic efficiency, and investigate the corrosion inhibition properties of protective coatings.`, image:
-      'https://i.ibb.co/q3BNF561/image.png',
+      `Our high-precision Potentiostat/Galvanostat Electrochemical Workstation provides rigorous analysis of electrical and interfacial phenomena in advanced materials. Offering exact control over potential and current in multi-electrode configurations, it supports essential techniques including Cyclic Voltammetry (CV) and Electrochemical Impedance Spectroscopy (EIS). This facility is vital for characterizing energy storage and surface-active materials, enabling researchers to evaluate the specific capacitance of supercapacitor electrodes, analyze catalytic efficiency, and investigate corrosion inhibition in protective coatings.`, image:
+      '/public/images/facilities/Electrochemical mechine.jpeg',
   },
   {
     name: 'FTIR',
     description:
-      `The facility features a compact, high-performance Shimadzu IRSpirit Fourier Transform Infrared (FTIR) Spectrophotometer, equipped with a QATR-S single-reflection Attenuated Total Reflection (ATR) accessory. This setup allows for the direct, non-destructive analysis of solid, liquid, and powder samples without requiring extensive preparation such as KBr pellet pressing. By measuring characteristic infrared absorption and molecular vibrations, the system generates high-resolution spectra for rapid chemical identification. It is primarily utilized to confirm the successful surface functionalization of nanomaterials, monitor chemical cross-linking, and detect interfacial bonding between nanofillers and host substrates.`,
+      `Our facility features a high-performance Shimadzu IRSpirit FTIR Spectrophotometer equipped with a QATR-S ATR accessory for direct, non-destructive analysis of solids, liquids, and powders. By eliminating extensive sample preparation, the system rapidly generates high-resolution vibrational spectra for chemical identification. This instrument is essential for confirming nanomaterial surface functionalization, monitoring chemical cross-linking, and detecting interfacial bonding between nanofillers and host substrates.`,
     image:
-      'https://i.ibb.co/8gfSsX3D/image.png',
+      '/public/images/facilities/ftir.png',
   },
   {
     name: 'Oven',
     description:
-      `The laboratory features a series of high-performance Laboratory Drying Ovens designed for precise thermal processing, moisture removal, and sample conditioning. These units provide reliable, uniform temperature control across a broad operating range, featuring digital PID controllers and integrated observation windows for safe, real-time monitoring. The multi-unit configuration allows researchers to concurrently run independent thermal cycles—such as solvent evaporation or high-temperature curing—maximizing workflow efficiency. These ovens are routinely utilized for the controlled drying of synthesized nanoparticles and the thermal cross-linking of functional polymer-matrix thin films.`,
+      `Our facility features a series of high-performance Laboratory Drying Ovens designed for precise thermal processing, moisture removal, and sample conditioning. Equipped with digital PID controllers for uniform temperature regulation, the multi-unit configuration enables concurrent thermal cycles to maximize workflow efficiency. These ovens are essential for solvent evaporation, high-temperature curing, the controlled drying of synthesized nanoparticles, and the thermal cross-linking of functional polymer-matrix thin films.`,
     image:
-      'https://i.ibb.co/8njTX15F/image.png',
+      '/public/images/facilities/Oven.png',
   },
   {
     name: 'Centrifuge mechine',
     description:
-      `The facility utilizes a Biobase BKC-TH16II High-Speed Centrifuge for the liquid-phase separation, purification, and processing of chemical mixtures. Equipped with a microcomputer control system, it allows users to precisely program parameters such as rotational speed, Relative Centrifugal Force (RCF), processing time, and acceleration profiles via a digital display. In advanced materials synthesis, this centrifuge is foundational for the isolation and washing steps of wet-chemical processes. Researchers employ the system to harvest synthesized nanoparticles or functionalized nanotubes from liquid reaction mixtures, cleanly separating them from excess precursors and unreacted byproducts.`, image:
-      'https://i.ibb.co/whkPzmfL/image.png',
+      `Our facility utilizes a Biobase BKC-TH16II High-Speed Centrifuge for the precise liquid-phase separation and purification of chemical mixtures. Featuring a programmable microcomputer control system to regulate rotational speed, Relative Centrifugal Force (RCF), and acceleration profiles, it is essential for the isolation and washing steps in wet-chemical synthesis. This system enables researchers to efficiently harvest synthesized nanoparticles and functional materials by cleanly separating them from excess precursors and unreacted byproducts.`, image:
+      '/public/images/facilities/centrifuge machine.png',
   },
   {
-    name: 'WM MS Sonicator',
+    name: 'Precision Synthesis & Dispersion Station',
     description:
-`The laboratory features an integrated Material Synthesis and Preparation Station, combining precision weighing, thermal mixing, and ultrasonic processing equipment into a centralized workflow. On the left, a high-resolution Analytical Precision Balance enclosed in a draft shield provides accurate measurement of chemical precursors down to sub-milligram levels. In the center, a pair of Hotplate Magnetic Stirrers offers independent control over rotational speed and heating for uniform dissolution and steady chemical reactions. Completing the station on the right is a digital Ultrasonic Bath Sonicator, which utilizes acoustic cavitation to disrupt agglomerated nanoparticles and ensure uniform dispersion within polymer solutions.`, image:
-      'https://i.ibb.co/chNzLb4t/WM-MS-Sonicator.png',
+      `Our integrated Material Synthesis and Preparation Station combines precision weighing, thermal mixing, and ultrasonic processing into a centralized workflow. The station features a high-resolution Analytical Precision Balance for the sub-milligram measurement of chemical precursors, alongside Hotplate Magnetic Stirrers that provide controlled heating and agitation for uniform dissolution. Additionally, a digital Ultrasonic Bath Sonicator utilizes acoustic cavitation to disrupt nanoparticle agglomerates, ensuring homogenous dispersion within polymer solutions and liquid reaction mixtures.`, image:
+      '/public/images/facilities/WM_MS_Sonicator.png',
   },
 ];
 
