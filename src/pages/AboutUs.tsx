@@ -69,18 +69,21 @@ const otherMembers = [
   {
     name: 'Emon Hossain',
     role: 'M.Sc. student',
+    institution: 'University of Dhaka',
     image:
       '/public/images/members/Emon.jpeg',
   },
   {
     name: 'Tamanna Tonni',
     role: 'M.Sc. student',
+    institution: 'University of Dhaka',
     image:
       '/public/images/members/user_demo.png',
   },
   {
     name: 'Sabbir Ahmed',
     role: 'M.Sc. student',
+    institution: 'Jahangirnagar University',
     image:
       '/public/images/members/user_demo.png',
   },
@@ -411,6 +414,7 @@ export default function AboutUs() {
                       <div className="p-5">
                         <h3 className="font-bold text-gray-900">{member.name}</h3>
                         <p className="text-sm text-[#00897b] font-medium">{member.role}</p>
+                        <p className="text-xs text-gray-500 mt-1">{member.institution}</p>
                       </div>
                     </motion.div>
                   ))}
