@@ -83,7 +83,7 @@ const otherMembers = [
   {
     name: 'Sabbir Ahmed',
     role: 'M.Sc. student',
-    institution: 'Jahangirnagar University',
+    institution: 'Barishal University',
     image:
       '/public/images/members/user_demo.png',
   },
