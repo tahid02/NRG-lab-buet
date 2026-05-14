@@ -303,20 +303,20 @@ const activeProjects: ActiveProject[] = [
     pi: 'Dr. Rahman',
     status: 'Active',
   },
-  {
-    title: 'Graphene-Enhanced Polymer Composites',
-    funder: 'Samsung SDI Partnership',
-    duration: '2024-2025',
-    pi: 'Dr. Ahmed',
-    status: 'Active',
-  },
-  {
-    title: 'Nanostructured Photocatalysts for Water Splitting',
-    funder: 'BUET Research Grant',
-    duration: '2022-2025',
-    pi: 'Dr. Islam',
-    status: 'Active',
-  },
+  // {
+  //   title: 'Graphene-Enhanced Polymer Composites',
+  //   funder: 'Samsung SDI Partnership',
+  //   duration: '2024-2025',
+  //   pi: 'Dr. Ahmed',
+  //   status: 'Active',
+  // },
+  // {
+  //   title: 'Nanostructured Photocatalysts for Water Splitting',
+  //   funder: 'BUET Research Grant',
+  //   duration: '2022-2025',
+  //   pi: 'Dr. Islam',
+  //   status: 'Active',
+  // },
 ];
 
 function ResearchModal({

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar,
   ArrowRight,
@@ -8,9 +8,24 @@ import {
   Newspaper,
   Users,
   Microscope,
+  X,
 } from 'lucide-react';
 
-const newsItems = [
+interface NewsItem {
+  date: string;
+  category: string;
+  icon: React.ElementType;
+  title: string;
+  summary: string;
+  description: React.ReactNode;
+  highlights: string[];
+  impact: string;
+  tags: string[];
+  image: string;
+  featured: boolean;
+}
+
+const newsItems: NewsItem[] = [
   {
     date: 'December 15, 2024',
     category: 'Publication',
@@ -18,68 +33,37 @@ const newsItems = [
     title: 'NRG Lab Publishes Breakthrough in Nature Nanotechnology',
     summary:
       'Our latest research on graphene-based supercapacitors achieves record energy density, opening new pathways for next-generation energy storage devices.',
+    description: (
+      <>
+        <p className="mb-4">
+          The Nanocomposite Research Group (NRG) at BUET has achieved a major milestone with the publication of its latest work in <em>Nature Nanotechnology</em>, one of the most prestigious peer-reviewed journals in the field. The study demonstrates a novel graphene-based supercapacitor architecture that delivers record volumetric energy density—exceeding 120 Wh·L⁻¹—while maintaining the exceptional power density and cycle life characteristic of supercapacitive storage.
+        </p>
+        <p className="mb-4">
+          <strong>Technical Innovation.</strong> The breakthrough centers on a densely packed, vertically aligned graphene electrode engineered via a modified electrochemical exfoliation process. By controlling interlayer spacing with sub-nanometer precision and introducing pseudocapacitive surface functional groups, the team created a dual-storage mechanism: fast electrostatic double-layer capacitance at the basal planes and rapid surface redox reactions at the edges. This synergy allows the device to bridge the performance gap between batteries and capacitors.
+        </p>
+        <p>
+          <strong>Scalability and Prototyping.</strong> Beyond the lab, the team has fabricated pouch-cell prototypes using standard slurry-casting techniques compatible with roll-to-roll manufacturing. Initial third-party testing confirms stable performance across −20 °C to 60 °C, positioning the technology for integration into electric vehicle regenerative braking systems and grid-frequency regulation modules.
+        </p>
+      </>
+    ),
+    highlights: [
+      'Record volumetric energy density of >120 Wh·L⁻¹ for a graphene supercapacitor',
+      'Dual-storage mechanism combining EDLC and pseudocapacitance',
+      'Pouch-cell prototypes validated for industrial roll-to-roll manufacturing',
+      'Stable operation across −20 °C to 60 °C temperature window',
+      'Featured in Nature Nanotechnology with an accompanying News & Views article',
+    ],
+    impact:
+      'This work redefines the practical ceiling for supercapacitor energy density and provides a credible roadmap for high-power, long-lifetime energy storage in electric mobility and renewable grid stabilization. Several industry partners have initiated licensing discussions.',
+    tags: ['Supercapacitors', 'Graphene', 'Nature Nanotechnology', 'Energy Storage', 'EVs'],
     image:
       'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80',
     featured: true,
   },
-  {
-    date: 'November 28, 2024',
-    category: 'Award',
-    icon: Award,
-    title: 'Dr. Rahman Receives National Science Award',
-    summary:
-      'Principal Investigator Dr. Muhammad Rahman has been honored with the prestigious National Science Award for his outstanding contributions to sustainable energy materials research.',
-    image:
-      'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
-    featured: true,
-  },
-  {
-    date: 'October 10, 2024',
-    category: 'Partnership',
-    icon: Users,
-    title: 'New Industry Partnership with Samsung SDI',
-    summary:
-      'NRG announces a collaborative research project with Samsung SDI to develop next-generation solid-state battery technology for electric vehicles.',
-    image:
-      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80',
-    featured: false,
-  },
-  {
-    date: 'September 5, 2024',
-    category: 'Event',
-    icon: Microscope,
-    title: 'NRG Hosts International Nanomaterials Symposium',
-    summary:
-      'Over 200 researchers from 15 countries gathered at BUET for the 3rd International Symposium on Nanomaterials for Energy Applications.',
-    image:
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
-    featured: false,
-  },
-  {
-    date: 'August 20, 2024',
-    category: 'Award',
-    icon: Award,
-    title: 'Ph.D. Student Wins Best Poster Award',
-    summary:
-      'Rashid Hossain received the Best Poster Award at the Asian Conference on Electrochemistry for his work on solid-state electrolytes.',
-    image:
-      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
-    featured: false,
-  },
-  {
-    date: 'July 12, 2024',
-    category: 'Grant',
-    icon: Newspaper,
-    title: 'New Research Grant from Ministry of Science',
-    summary:
-      'NRG secures a 3-year research grant worth BDT 2.5 crore to develop high-performance solid-state batteries for renewable energy storage.',
-    image:
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
-    featured: false,
-  },
+
 ];
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Publication: 'bg-[#00897b]/10 text-[#00897b]',
   Award: 'bg-amber-100 text-amber-700',
   Partnership: 'bg-blue-100 text-blue-700',
@@ -87,8 +71,126 @@ const categoryColors = {
   Grant: 'bg-green-100 text-green-700',
 };
 
+function NewsModal({ news, onClose }: { news: NewsItem; onClose: () => void }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [handleKeyDown]);
+
+  const Icon = news.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`news-modal-title-${news.title}`}
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal Content */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 20 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        ref={contentRef}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-[#00897b]"
+          aria-label="Close modal"
+        >
+          <X className="w-5 h-5 text-gray-700" />
+        </button>
+
+        {/* Scrollable Content */}
+        <div className="overflow-y-auto">
+          {/* Banner Image */}
+          <div className="relative h-56 sm:h-72 lg:h-80">
+            <img
+              src={news.image}
+              alt={news.title}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#00897b]/90 text-white">
+                  <Icon className="w-4 h-4" />
+                </span>
+                <span className="text-xs uppercase tracking-widest text-white/80 font-semibold">
+                  {news.category}
+                </span>
+                <span className="flex items-center gap-1.5 text-white/70 text-sm">
+                  <Calendar size={14} />
+                  {news.date}
+                </span>
+              </div>
+              <h2
+                id={`news-modal-title-${news.title}`}
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {news.title}
+              </h2>
+            </div>
+          </div>
+
+          {/* Body */}
+          <div className="p-6 sm:p-8 lg:p-10">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {news.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 bg-[#00897b]/10 text-[#00897b] text-xs font-semibold rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Detailed Description */}
+            <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed text-base sm:text-lg">
+              {news.description}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function News() {
   const { pathname } = useLocation();
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -153,7 +255,17 @@ export default function News() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+                    className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 cursor-pointer focus-within:ring-2 focus-within:ring-[#00897b] focus-within:ring-offset-2"
+                    onClick={() => setSelectedNews(news)}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setSelectedNews(news);
+                      }
+                    }}
+                    role="button"
+                    aria-label={`Open details for ${news.title}`}
                   >
                     <div className="relative h-64 overflow-hidden">
                       <img
@@ -186,7 +298,13 @@ export default function News() {
                       <p className="mt-3 text-gray-600 leading-relaxed">
                         {news.summary}
                       </p>
-                      <button className="mt-4 inline-flex items-center gap-2 text-[#00897b] font-semibold hover:gap-4 transition-all group/btn">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedNews(news);
+                        }}
+                        className="mt-4 inline-flex items-center gap-2 text-[#00897b] font-semibold hover:gap-4 transition-all group/btn"
+                      >
                         Read More
                         <ArrowRight
                           size={18}
@@ -219,7 +337,7 @@ export default function News() {
             </motion.div>
 
             <div className="space-y-6">
-              {regularNews.map((news, index) => {
+              {[...featuredNews, ...regularNews].map((news, index) => {
                 const Icon = news.icon;
                 return (
                   <motion.article
@@ -228,7 +346,17 @@ export default function News() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
+                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all cursor-pointer focus-within:ring-2 focus-within:ring-[#00897b] focus-within:ring-offset-2"
+                    onClick={() => setSelectedNews(news)}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setSelectedNews(news);
+                      }
+                    }}
+                    role="button"
+                    aria-label={`Open details for ${news.title}`}
                   >
                     <div className="flex flex-col sm:flex-row">
                       <div className="sm:w-48 h-48 sm:h-auto flex-shrink-0 overflow-hidden">
@@ -261,7 +389,13 @@ export default function News() {
                         <p className="mt-2 text-gray-600 text-sm line-clamp-2">
                           {news.summary}
                         </p>
-                        <button className="mt-3 inline-flex items-center gap-2 text-[#00897b] font-medium text-sm hover:gap-4 transition-all">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedNews(news);
+                          }}
+                          className="mt-3 inline-flex items-center gap-2 text-[#00897b] font-medium text-sm hover:gap-4 transition-all"
+                        >
                           Read More
                           <ArrowRight size={16} />
                         </button>
@@ -273,42 +407,14 @@ export default function News() {
             </div>
           </div>
         </section>
-
-        {/* Newsletter */}
-        {/* <section className="py-20 bg-[#630e1d]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2
-                className="text-3xl sm:text-4xl font-bold text-white"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                Stay Updated
-              </h2>
-              <p className="mt-4 text-white/80 text-lg">
-                Subscribe to our newsletter for the latest research updates and
-                news.
-              </p>
-              <form className="mt-8 flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40"
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-4 bg-[#00897b] text-white font-semibold rounded-full hover:bg-[#00796b] transition-all"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        </section> */}
       </main>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedNews && (
+          <NewsModal news={selectedNews} onClose={() => setSelectedNews(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
