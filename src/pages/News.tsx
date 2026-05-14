@@ -275,7 +275,7 @@ export default function News() {
         </section>
 
         {/* Newsletter */}
-        <section className="py-20 bg-[#630e1d]">
+        {/* <section className="py-20 bg-[#630e1d]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -307,7 +307,7 @@ export default function News() {
               </form>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );
