@@ -12,11 +12,11 @@ import {
 } from 'lucide-react';
 
 const pi = {
-  name: 'Dr. Muhammad Rahman',
+  name: 'Dr. Muhammad Rakibul Islam',
   title: 'Professor & Principal Investigator',
   image:
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-  bio: 'Dr. Rahman is a Professor of Physics at BUET, specializing in nanomaterials synthesis and characterization. He received his Ph.D. from MIT and completed postdoctoral research at Stanford University. His work focuses on developing novel nanostructured materials for energy storage and conversion.',
+    'https://placehold.net/avatar-2.png',
+  bio: 'Dr. Muhammad Rakibul Islam is currently working as a Professor in the Department of Physics at Bangladesh University of Engineering and Technology (BUET), Dhaka, Bangladesh. He completed his Ph.D. in Physics from University of Central Florida (UCF), USA in May 2015. In his PhD, he worked on the fabrication of the carbon nanotube and 2D materials (more specifically, Graphene and MoS2) based nano-electronic devices and study their electron transport properties.',
   education: [
     'Ph.D. Materials Science, MIT (2008)',
     'M.S. Physics, BUET (2003)',
@@ -518,9 +518,8 @@ export default function AboutUs() {
                   {showAllAlumni ? 'Show Less' : 'See More'}
                   <ChevronDown
                     size={18}
-                    className={`transition-transform duration-300 ${
-                      showAllAlumni ? 'rotate-180' : ''
-                    }`}
+                    className={`transition-transform duration-300 ${showAllAlumni ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
               </div>
