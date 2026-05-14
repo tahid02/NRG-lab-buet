@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 const researchItems = [
   {
     image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80',
+      '/public/images/card/supercapacitor.png',
     headline: 'Energy Storage Applications',
     description:
       'Next-generation materials for electrochemical energy storage, spanning high-energy-density lithium-ion and sodium-ion batteries, safe solid-state electrolytes, and high-power supercapacitors optimized for real-world grid and mobility applications.',
@@ -16,7 +16,7 @@ const researchItems = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+    'https://images.pexels.com/photos/30360253/pexels-photo-30360253.jpeg?auto=compress&cs=tinysrgb&w=800',
     headline: 'Polymer & Composite Materials',
     description:
       'Advanced polymers and composite materials leverage molecular architecture and multi-phase structuring to deliver exceptional mechanical, thermal, and responsive behaviors for aerospace, automotive, and biomedical engineering.',

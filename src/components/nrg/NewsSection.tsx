@@ -6,22 +6,10 @@ import { ArrowRight, Calendar } from 'lucide-react';
 
 const newsItems = [
   {
-    date: 'December 15, 2024',
-    headline: 'NRG Lab Publishes Breakthrough in Nature Nanotechnology',
+    date: 'March 17, 2026',
+    headline: 'NRG Lab Publishes Breakthrough in ACS Applied Nano Materials',
     summary:
-      'Our latest research on graphene-based supercapacitors achieves record energy density.',
-  },
-  {
-    date: 'November 28, 2024',
-    headline: 'Dr. Rahman Receives National Science Award',
-    summary:
-      'Principal Investigator honored for contributions to sustainable energy materials.',
-  },
-  {
-    date: 'October 10, 2024',
-    headline: 'New Industry Partnership with Samsung SDI',
-    summary:
-      'Collaborative project to develop next-generation solid-state battery technology.',
+      'Our lab engineered a novel MoSe₂/V₂O₅ nanocomposite that significantly enhances ion intercalation and energy storage capabilities for symmetric supercapacitors.',
   },
 ];
 
