@@ -198,11 +198,16 @@ const alumni = [
   },
 ];
 
+const currentMembers = teamMembers.slice(0, 10);
+const otherMembers = teamMembers.slice(10);
+
 export default function AboutUs() {
   const { pathname } = useLocation();
-  const [showAllMembers, setShowAllMembers] = useState(false);
+  const [showAllCurrent, setShowAllCurrent] = useState(false);
+  const [showAllOthers, setShowAllOthers] = useState(false);
   const [showAllAlumni, setShowAllAlumni] = useState(false);
-  const INITIAL_MEMBERS_TO_SHOW = 8;
+  const INITIAL_CURRENT_TO_SHOW = 8;
+  const INITIAL_OTHERS_TO_SHOW = 4;
   const INITIAL_ALUMNI_TO_SHOW = 3;
 
   useEffect(() => {
@@ -338,55 +343,117 @@ export default function AboutUs() {
               </h2>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers
-                .slice(
-                  0,
-                  showAllMembers ? teamMembers.length : INITIAL_MEMBERS_TO_SHOW
-                )
-                .map((member, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+            {/* Current Members subsection */}
+            <div className="mb-16">
+              <div className="flex items-center gap-4 mb-10">
+                <span className="px-4 py-1.5 bg-[#630e1d] text-white text-sm font-semibold rounded-full tracking-wide">
+                  Current Members
+                </span>
+                <div className="flex-1 h-px bg-[#630e1d]/20" />
+                <span className="text-sm text-gray-400 font-medium">
+                  {currentMembers.length} members
+                </span>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {currentMembers
+                  .slice(0, showAllCurrent ? currentMembers.length : INITIAL_CURRENT_TO_SHOW)
+                  .map((member, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                    >
+                      <div className="relative h-56 overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="p-5">
+                        <h3 className="font-bold text-gray-900">{member.name}</h3>
+                        <p className="text-sm text-[#00897b] font-medium">{member.role}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+
+              {currentMembers.length > INITIAL_CURRENT_TO_SHOW && (
+                <div className="mt-10 text-center">
+                  <button
+                    onClick={() => setShowAllCurrent(!showAllCurrent)}
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#630e1d] text-white font-medium rounded-full hover:bg-[#4a0a15] transition-colors"
                   >
-                    <div className="relative h-56 overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-bold text-gray-900">{member.name}</h3>
-                      <p className="text-sm text-[#00897b] font-medium">
-                        {member.role}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                    {showAllCurrent ? 'Show Less' : 'See More'}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${showAllCurrent ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
+              )}
             </div>
 
-            {teamMembers.length > INITIAL_MEMBERS_TO_SHOW && (
-              <div className="mt-12 text-center">
-                <button
-                  onClick={() => setShowAllMembers(!showAllMembers)}
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-[#630e1d] text-white font-medium rounded-full hover:bg-[#4a0a15] transition-colors"
-                >
-                  {showAllMembers ? 'Show Less' : 'See More'}
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform duration-300 ${
-                      showAllMembers ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+            {/* Others subsection */}
+            <div>
+              <div className="flex items-center gap-4 mb-10">
+                <span className="px-4 py-1.5 bg-[#00897b] text-white text-sm font-semibold rounded-full tracking-wide">
+                  Others
+                </span>
+                <div className="flex-1 h-px bg-[#00897b]/20" />
+                <span className="text-sm text-gray-400 font-medium">
+                  {otherMembers.length} members
+                </span>
               </div>
-            )}
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {otherMembers
+                  .slice(0, showAllOthers ? otherMembers.length : INITIAL_OTHERS_TO_SHOW)
+                  .map((member, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                    >
+                      <div className="relative h-56 overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="p-5">
+                        <h3 className="font-bold text-gray-900">{member.name}</h3>
+                        <p className="text-sm text-[#00897b] font-medium">{member.role}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+
+              {otherMembers.length > INITIAL_OTHERS_TO_SHOW && (
+                <div className="mt-10 text-center">
+                  <button
+                    onClick={() => setShowAllOthers(!showAllOthers)}
+                    className="inline-flex items-center gap-2 px-8 py-3 border-2 border-[#00897b] text-[#00897b] font-medium rounded-full hover:bg-[#00897b] hover:text-white transition-colors"
+                  >
+                    {showAllOthers ? 'Show Less' : 'See More'}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${showAllOthers ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
