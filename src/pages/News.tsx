@@ -27,22 +27,22 @@ interface NewsItem {
 
 const newsItems: NewsItem[] = [
   {
-    date: 'December 15, 2024',
+    date: 'March 17, 2026',
     category: 'Publication',
     icon: Newspaper,
-    title: 'NRG Lab Publishes Breakthrough in Nature Nanotechnology',
+    title: 'NRG Lab Publishes Breakthrough in ACS Applied Nano Materials',
     summary:
-      'Our latest research on graphene-based supercapacitors achieves record energy density, opening new pathways for next-generation energy storage devices.',
+      'Our lab engineered a novel MoSe₂/V₂O₅ nanocomposite that significantly enhances ion intercalation and energy storage capabilities for symmetric supercapacitors.',
     description: (
       <>
         <p className="mb-4">
-          The Nanocomposite Research Group (NRG) at BUET has achieved a major milestone with the publication of its latest work in <em>Nature Nanotechnology</em>, one of the most prestigious peer-reviewed journals in the field. The study demonstrates a novel graphene-based supercapacitor architecture that delivers record volumetric energy density—exceeding 120 Wh·L⁻¹—while maintaining the exceptional power density and cycle life characteristic of supercapacitive storage.
+          The Nanocomposite Laboratory at BUET has achieved a major milestone with the publication of its latest work in ACS Applied Nano Materials, a highly respected peer-reviewed journal in the field. The study demonstrates a novel binary heterostructure architecture for symmetric supercapacitors that delivers exceptional energy density, impressive specific capacitance, and remarkable long-term stability.
         </p>
         <p className="mb-4">
-          <strong>Technical Innovation.</strong> The breakthrough centers on a densely packed, vertically aligned graphene electrode engineered via a modified electrochemical exfoliation process. By controlling interlayer spacing with sub-nanometer precision and introducing pseudocapacitive surface functional groups, the team created a dual-storage mechanism: fast electrostatic double-layer capacitance at the basal planes and rapid surface redox reactions at the edges. This synergy allows the device to bridge the performance gap between batteries and capacitors.
+          <strong>Technical Innovation.</strong> The breakthrough centers on incorporating V2O5 nanobelts into 2H-MoSe2 nanoflowers via a carefully controlled hydrothermal approach. By optimizing the integration to a 1% V2O5 concentration, the team achieved significant interfacial passivation and defect mediation. This engineered structural modification expands the interlayer spacing and introduces disorder-induced surface sites, creating a highly efficient dual-storage mechanism. This synergy allows for diffusion-driven ion intercalation alongside standard surface adsorption, striking an effective balance between high redox activity and rapid charge and ion transport.
         </p>
         <p>
-          <strong>Scalability and Prototyping.</strong> Beyond the lab, the team has fabricated pouch-cell prototypes using standard slurry-casting techniques compatible with roll-to-roll manufacturing. Initial third-party testing confirms stable performance across −20 °C to 60 °C, positioning the technology for integration into electric vehicle regenerative braking systems and grid-frequency regulation modules.
+          <strong>Scalability and Prototyping.</strong> Beyond the theoretical framework, the optimized nanocomposite electrode exhibited a remarkable specific capacitance of 948.13 F/g at 0.33 A/g in a three-electrode setup. When assembled into a symmetric two-electrode configuration, the device achieved an energy density of 21.02 Wh/kg at a power density of 4000 W/kg, while maintaining an outstanding 98.6% capacity retention over 12,000 cycles. To demonstrate real-world viability, the team successfully fabricated a coin cell prototype that continuously illuminated red, yellow, and green LED lamps. This positions the advanced MoSe2/V2O5 technology as a highly promising and dependable candidate for integration into the next generation of sustainable energy storage systems.
         </p>
       </>
     ),
@@ -276,9 +276,8 @@ export default function News() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                       <div className="absolute bottom-4 left-4 flex items-center gap-3">
                         <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            categoryColors[news.category]
-                          }`}
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${categoryColors[news.category]
+                            }`}
                         >
                           {news.category}
                         </span>
@@ -369,9 +368,8 @@ export default function News() {
                       <div className="p-6 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-3">
                           <span
-                            className={`px-3 py-1 rounded-full text-xs font-medium ${
-                              categoryColors[news.category]
-                            }`}
+                            className={`px-3 py-1 rounded-full text-xs font-medium ${categoryColors[news.category]
+                              }`}
                           >
                             {news.category}
                           </span>

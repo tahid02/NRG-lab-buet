@@ -297,10 +297,10 @@ const researchThemes: ResearchTheme[] = [
 
 const activeProjects: ActiveProject[] = [
   {
-    title: 'High-Performance Solid-State Batteries',
-    funder: 'Ministry of Science & Technology',
-    duration: '2023-2026',
-    pi: 'Dr. Rahman',
+    title: 'High-Performance Supercapacitors',
+    funder: 'BUET',
+    duration: '2025-2027',
+    pi: 'Dr. Muhammad Rakibul Islam',
     status: 'Active',
   },
   // {
